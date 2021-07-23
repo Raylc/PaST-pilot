@@ -1,5 +1,5 @@
 ---
-title: Testing the cognitive foundations of Paleolithic social transmission
+title: Testing the motor and cognitive foundations of Paleolithic social transmission
 subtitle: 
 thanks: | 
     Grants or other notes about the article that should go on the front 
@@ -25,43 +25,75 @@ authors:
   email: dwstout@emory.edu
   
 keywords:
-- key
-- dictionary
-- word
+- Oldowan
+- Stone toolmaking
+- Social learning
+- Individual variation
+- Cognitive aptitudes
+- Motor skills
 
 #PACS: 
 #- PAC1
 #- superPAC
 
 abstract: |
-  Stone tools provide key evidence of human cognitive evolution but remain difficult to interpret. Toolmaking skill-learning, in particular, has been understudied even though: 1) the most salient cognitive demands of toolmaking should occur during learning, and 2) variation in learning aptitude would have provided the raw material for any past selection acting on tool making ability. Despite decades of research on stone toolmaking we still know little about the cognitive prerequisites of learning under different social transmission conditions that may have prevailed during the Paleolithic. This paper presents results from a pilot experimental study to trial new experimental methods for investigating the effect of learning conditions and individual differences on Oldowan flake-tool making skill acquisition. We trained 32 participants for 2 hours to make simple stone tools under two different instructional conditions (observation-only vs. direct-active teaching) employing appropriate raw materials and in-person interaction. Participant performance was evaluated through analysis of the stone artifacts produced and was compared both across experimental groups and with respect to individual participant differences in grip strength, motor accuracy, and cognitive function measured for the study. Our results show aptitude to be associated with fluid intelligence in a verbally instructed group and with tendency to use social information in an observation-only group. These results have implications for debates surrounding the cumulative nature of human culture and the role of evolved psychological mechanisms in “high fidelity” transmission of information, particularly through imitation and teaching.
+  Stone tools provide key evidence of human cognitive evolution but remain difficult to interpret. Toolmaking skill-learning in particular has been understudied even though: 1) the most salient cognitive demands of toolmaking should occur during learning, and 2) variation in learning aptitude would have provided the raw material for any past selection acting on tool making ability. However, we actually know very little about the cognitive prerequisites of learning under different information transmission conditions that may have prevailed during the Paleolithic. This paper presents results from a pilot experimental study to trial new experimental methods for studying the effect of learning conditions and individual differences on Oldowan flake-tool making skill acquisition. We trained 23 participants for 2 hours to make stone flakes under two different instructional conditions (observation only vs. direct active teaching) employing appropriate raw materials, practice time, and real human interaction. Participant performance was evaluated through analysis of the stone artifacts produced. Performance was compared both across experimental groups and with respect to individual participant differences in grip strength, motor accuracy, and cognitive function measured for the study. Our results show aptitude to be associated with fluid intelligence in a verbally instructed group and with a tendency to use social information in an observation-only group. These results have implications for debates surrounding the cumulative nature of human culture, the relative contributions of knowledge and know-how for stone tool making, and the role of evolved psychological mechanisms in “high fidelity” transmission of information, particularly through imitation and teaching.
+
 
 
 bibliography: bibliography.bib
-bibstyle: spphys
+bibstyle: spbasic
 # bibstyle options spbasic(default), spphys, spmpsci
 output: rticles::springer_article
 ---
 
 # Introduction {#intro}
 
-Your text comes here. Separate text sections with \cite{Mislevy06Cog}.
+Stone tools have long been seen as a key source of evidence for understanding human behavioral and cognitive evolution [@darwin1871; @oakley1949; @washburn1960]. Pathbreaking attempts to infer specific cognitive capacities from this evidence largely focused on the basic requirements of tool production [@isaac1976; @wynn1979; @gowlett1984; @wynn2004]. More recently, increasing attention has been directed to the processes and demands of stone tool making skill acquisition [@roux1995; @stout2002; @stout2005; @geribàs2010; @nonaka2010; @stout2011; @putt2014; @hecht2015; @duke2015; @morgan2015; @stout2015; @lombao2017; @putt2017; @cataldo2018; @putt2019; @pargeter2019; @pargeter2020]. This is motivated by the expectation that the most salient cognitive demands of tool making should occur during learning rather than routine expert performance [@stout2015] and by interest in the relevance of different social learning mechanisms such as imitation [@rein2014; @stout2019], emulation [@tehrani2008; @wilkins2018], and language [@ohnuma1997; @putt2014; @morgan2015; @lombao2017; @putt2017; @cataldo2018] to the reproduction of Paleolithic technologies.
 
-# Section title {#sec:1}
+## **Individual Differences**
 
-Text with citations by \cite{Galyardt14mmm}.
+## **Teaching, Language, and Tool Making**
 
-## Subsection title {#sec:2}
+## **Raw materials and knapping skill**
 
-as required. Don't forget to give each section
-and subsection a unique label (see Sect. \ref{sec:1}).
 
-#### Paragraph headings 
 
-Use paragraph headings as needed.
+# **Materials and Methods**
 
-\begin{align}
-a^2+b^2=c^2
-\end{align}
+## **Participants**
+## **Study Visit**
 
+## **Individual Difference Measures**
+
+##  **Stone Tool Making**
+
+### **Raw Materials**
+### **Experimental Conditions**
+##  **Lithic Analysis**
+##  **Statistical Analyses**
+
+
+# **Results** 
+## **Principal Component analyses**
+
+### **Flake size and shape**
+### **Lithic flaking performance measures**
+
+## **Do trained, untrained, and expert knappers perform differently?**
+
+## **Does training/practice time impact flaking performance?**
+
+## **Do individual differences in motor skill and psychometric measures predict flaking performance? **
+### **Model 1: Individual differences and quantity flaking**
+### **Model 2: Individual differences and quality flaking**
+
+# **Discussion** 
+
+# **Conclusions** 
+
+
+# **Acknowledgments** 
+
+# **References**
 

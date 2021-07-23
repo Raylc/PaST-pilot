@@ -32,11 +32,37 @@
 
 
 % Pandoc citation processing
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry sp
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set line spacing
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#3\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc} % for \widthof, \maxof
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\maxof{\widthof{#1}}{\csllabelwidth}}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth}{#1}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 
 \begin{document}
 
-\title{Testing the cognitive foundations of Paleolithic social
+\title{Testing the motor and cognitive foundations of Paleolithic social
 transmission \thanks{Grants or other notes about the article that should
 go on the front page should be placed here. General acknowledgments
 should be placed at the end of the article.} }
@@ -83,35 +109,39 @@ USA \\
 
 \begin{abstract}
 Stone tools provide key evidence of human cognitive evolution but remain
-difficult to interpret. Toolmaking skill-learning, in particular, has
-been understudied even though: 1) the most salient cognitive demands of
+difficult to interpret. Toolmaking skill-learning in particular has been
+understudied even though: 1) the most salient cognitive demands of
 toolmaking should occur during learning, and 2) variation in learning
 aptitude would have provided the raw material for any past selection
-acting on tool making ability. Despite decades of research on stone
-toolmaking we still know little about the cognitive prerequisites of
-learning under different social transmission conditions that may have
-prevailed during the Paleolithic. This paper presents results from a
-pilot experimental study to trial new experimental methods for
-investigating the effect of learning conditions and individual
-differences on Oldowan flake-tool making skill acquisition. We trained
-32 participants for 2 hours to make simple stone tools under two
-different instructional conditions (observation-only vs.~direct-active
-teaching) employing appropriate raw materials and in-person interaction.
-Participant performance was evaluated through analysis of the stone
-artifacts produced and was compared both across experimental groups and
-with respect to individual participant differences in grip strength,
-motor accuracy, and cognitive function measured for the study. Our
-results show aptitude to be associated with fluid intelligence in a
-verbally instructed group and with tendency to use social information in
-an observation-only group. These results have implications for debates
-surrounding the cumulative nature of human culture and the role of
-evolved psychological mechanisms in ``high fidelity'' transmission of
-information, particularly through imitation and teaching.
+acting on tool making ability. However, we actually know very little
+about the cognitive prerequisites of learning under different
+information transmission conditions that may have prevailed during the
+Paleolithic. This paper presents results from a pilot experimental study
+to trial new experimental methods for studying the effect of learning
+conditions and individual differences on Oldowan flake-tool making skill
+acquisition. We trained 23 participants for 2 hours to make stone flakes
+under two different instructional conditions (observation only
+vs.~direct active teaching) employing appropriate raw materials,
+practice time, and real human interaction. Participant performance was
+evaluated through analysis of the stone artifacts produced. Performance
+was compared both across experimental groups and with respect to
+individual participant differences in grip strength, motor accuracy, and
+cognitive function measured for the study. Our results show aptitude to
+be associated with fluid intelligence in a verbally instructed group and
+with a tendency to use social information in an observation-only group.
+These results have implications for debates surrounding the cumulative
+nature of human culture, the relative contributions of knowledge and
+know-how for stone tool making, and the role of evolved psychological
+mechanisms in ``high fidelity'' transmission of information,
+particularly through imitation and teaching.
 \\
 \keywords{
-        key \and
-        dictionary \and
-        word \and
+        Oldowan \and
+        Stone toolmaking \and
+        Social learning \and
+        Individual variation \and
+        Cognitive aptitudes \and
+        Motor skills \and
     }
 
 
@@ -125,29 +155,304 @@ information, particularly through imitation and teaching.
 \hypertarget{intro}{%
 \section{Introduction}\label{intro}}
 
-Your text comes here. Separate text sections with \cite{Mislevy06Cog}.
+Stone tools have long been seen as a key source of evidence for
+understanding human behavioral and cognitive evolution (Darwin 1871;
+Oakley 1949; Washburn 1960). Pathbreaking attempts to infer specific
+cognitive capacities from this evidence largely focused on the basic
+requirements of tool production (Isaac 1976; Wynn 1979; Gowlett 1984;
+Wynn and Coolidge 2004). More recently, increasing attention has been
+directed to the processes and demands of stone tool making skill
+acquisition (Roux, Bril, and Dietrich 1995; Stout 2002; Stout et al.
+2005; Geribàs, Mosquera, and Vergès 2010; Nonaka, Bril, and Rein 2010;
+Stout et al. 2011; Putt, Woods, and Franciscus 2014; Hecht et al. 2015;
+Duke and Pargeter 2015; Morgan et al. 2015; Stout and Khreisheh 2015;
+Lombao, Guardiola, and Mosquera 2017; Putt et al. 2017; Cataldo,
+Migliano, and Vinicius 2018; Putt, Wijeakumar, and Spencer 2019;
+Pargeter and Shea 2019; Pargeter et al. 2020). This is motivated by the
+expectation that the most salient cognitive demands of tool making
+should occur during learning rather than routine expert performance
+(Stout and Khreisheh 2015) and by interest in the relevance of different
+social learning mechanisms such as imitation (Rein, Nonaka, and Bril
+2014; Stout et al. 2019), emulation (Tehrani and Riede 2008; Wilkins
+2018), and language (Ohnuma, Aoki, and Akazawa 1997; Putt, Woods, and
+Franciscus 2014; Morgan et al. 2015; Lombao, Guardiola, and Mosquera
+2017; Putt et al. 2017; Cataldo, Migliano, and Vinicius 2018) to the
+reproduction of Paleolithic technologies.
 
-\hypertarget{sec:1}{%
-\section{Section title}\label{sec:1}}
+\hypertarget{individual-differences}{%
+\subsection{\texorpdfstring{\textbf{Individual
+Differences}}{Individual Differences}}\label{individual-differences}}
 
-Text with citations by \cite{Galyardt14mmm}.
+\hypertarget{teaching-language-and-tool-making}{%
+\subsection{\texorpdfstring{\textbf{Teaching, Language, and Tool
+Making}}{Teaching, Language, and Tool Making}}\label{teaching-language-and-tool-making}}
 
-\hypertarget{sec:2}{%
-\subsection{Subsection title}\label{sec:2}}
+\hypertarget{raw-materials-and-knapping-skill}{%
+\subsection{\texorpdfstring{\textbf{Raw materials and knapping
+skill}}{Raw materials and knapping skill}}\label{raw-materials-and-knapping-skill}}
 
-as required. Don't forget to give each section and subsection a unique
-label (see Sect. \ref{sec:1}).
+\hypertarget{materials-and-methods}{%
+\section{\texorpdfstring{\textbf{Materials and
+Methods}}{Materials and Methods}}\label{materials-and-methods}}
 
-\hypertarget{paragraph-headings}{%
-\paragraph{Paragraph headings}\label{paragraph-headings}}
+\hypertarget{participants}{%
+\subsection{\texorpdfstring{\textbf{Participants}}{Participants}}\label{participants}}
 
-Use paragraph headings as needed.
+\hypertarget{study-visit}{%
+\subsection{\texorpdfstring{\textbf{Study
+Visit}}{Study Visit}}\label{study-visit}}
 
-\begin{align}
-a^2+b^2=c^2
-\end{align}
+\hypertarget{individual-difference-measures}{%
+\subsection{\texorpdfstring{\textbf{Individual Difference
+Measures}}{Individual Difference Measures}}\label{individual-difference-measures}}
 
-\bibliographystyle{spphys}
+\hypertarget{stone-tool-making}{%
+\subsection{\texorpdfstring{\textbf{Stone Tool
+Making}}{Stone Tool Making}}\label{stone-tool-making}}
+
+\hypertarget{raw-materials}{%
+\subsubsection{\texorpdfstring{\textbf{Raw
+Materials}}{Raw Materials}}\label{raw-materials}}
+
+\hypertarget{experimental-conditions}{%
+\subsubsection{\texorpdfstring{\textbf{Experimental
+Conditions}}{Experimental Conditions}}\label{experimental-conditions}}
+
+\hypertarget{lithic-analysis}{%
+\subsection{\texorpdfstring{\textbf{Lithic
+Analysis}}{Lithic Analysis}}\label{lithic-analysis}}
+
+\hypertarget{statistical-analyses}{%
+\subsection{\texorpdfstring{\textbf{Statistical
+Analyses}}{Statistical Analyses}}\label{statistical-analyses}}
+
+\hypertarget{results}{%
+\section{\texorpdfstring{\textbf{Results}}{Results}}\label{results}}
+
+\hypertarget{principal-component-analyses}{%
+\subsection{\texorpdfstring{\textbf{Principal Component
+analyses}}{Principal Component analyses}}\label{principal-component-analyses}}
+
+\hypertarget{flake-size-and-shape}{%
+\subsubsection{\texorpdfstring{\textbf{Flake size and
+shape}}{Flake size and shape}}\label{flake-size-and-shape}}
+
+\hypertarget{lithic-flaking-performance-measures}{%
+\subsubsection{\texorpdfstring{\textbf{Lithic flaking performance
+measures}}{Lithic flaking performance measures}}\label{lithic-flaking-performance-measures}}
+
+\hypertarget{do-trained-untrained-and-expert-knappers-perform-differently}{%
+\subsection{\texorpdfstring{\textbf{Do trained, untrained, and expert
+knappers perform
+differently?}}{Do trained, untrained, and expert knappers perform differently?}}\label{do-trained-untrained-and-expert-knappers-perform-differently}}
+
+\hypertarget{does-trainingpractice-time-impact-flaking-performance}{%
+\subsection{\texorpdfstring{\textbf{Does training/practice time impact
+flaking
+performance?}}{Does training/practice time impact flaking performance?}}\label{does-trainingpractice-time-impact-flaking-performance}}
+
+\hypertarget{do-individual-differences-in-motor-skill-and-psychometric-measures-predict-flaking-performance}{%
+\subsection{\texorpdfstring{\textbf{Do individual differences in motor
+skill and psychometric measures predict flaking performance?
+}}{Do individual differences in motor skill and psychometric measures predict flaking performance? }}\label{do-individual-differences-in-motor-skill-and-psychometric-measures-predict-flaking-performance}}
+
+\hypertarget{model-1-individual-differences-and-quantity-flaking}{%
+\subsubsection{\texorpdfstring{\textbf{Model 1: Individual differences
+and quantity
+flaking}}{Model 1: Individual differences and quantity flaking}}\label{model-1-individual-differences-and-quantity-flaking}}
+
+\hypertarget{model-2-individual-differences-and-quality-flaking}{%
+\subsubsection{\texorpdfstring{\textbf{Model 2: Individual differences
+and quality
+flaking}}{Model 2: Individual differences and quality flaking}}\label{model-2-individual-differences-and-quality-flaking}}
+
+\hypertarget{discussion}{%
+\section{\texorpdfstring{\textbf{Discussion}}{Discussion}}\label{discussion}}
+
+\hypertarget{conclusions}{%
+\section{\texorpdfstring{\textbf{Conclusions}}{Conclusions}}\label{conclusions}}
+
+\hypertarget{acknowledgments}{%
+\section{\texorpdfstring{\textbf{Acknowledgments}}{Acknowledgments}}\label{acknowledgments}}
+
+\hypertarget{references}{%
+\section*{\texorpdfstring{\textbf{References}}{References}}\label{references}}
+\addcontentsline{toc}{section}{\textbf{References}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-cataldo2018}{}%
+Cataldo, Dana Michelle, Andrea Bamberg Migliano, and Lucio Vinicius.
+2018. {``Speech, Stone Tool-Making and the Evolution of Language.''}
+\emph{PLOS ONE} 13 (1): e0191071.
+\url{https://doi.org/10.1371/journal.pone.0191071}.
+
+\leavevmode\hypertarget{ref-darwin1871}{}%
+Darwin, Charles. 1871. \emph{The Descent of Man, and Selection in
+Relation to Sex}. 1st ed. London: John Murray.
+
+\leavevmode\hypertarget{ref-duke2015}{}%
+Duke, Hilary, and Justin Pargeter. 2015. {``Weaving Simple Solutions to
+Complex Problems: An Experimental Study of Skill in Bipolar
+Cobble-Splitting.''} \emph{Lithic Technology} 40 (4): 349--65.
+\url{https://doi.org/10.1179/2051618515Y.0000000016}.
+
+\leavevmode\hypertarget{ref-geribuxe0s2010}{}%
+Geribàs, Núria, Marina Mosquera, and Josep Maria Vergès. 2010. {``What
+Novice Knappers Have to Learn to Become Expert Stone Toolmakers.''}
+\emph{Journal of Archaeological Science} 37 (11): 2857--70.
+\url{https://doi.org/10.1016/j.jas.2010.06.026}.
+
+\leavevmode\hypertarget{ref-gowlett1984}{}%
+Gowlett, John A. J. 1984. {``Mental Abilities of Early Man: A Look at
+Some Hard Evidence.''} \emph{Higher Education Quarterly} 38 (3):
+199--220. \url{https://doi.org/10.1111/j.1468-2273.1984.tb01387.x}.
+
+\leavevmode\hypertarget{ref-hecht2015}{}%
+Hecht, E. E., D. A. Gutman, N. Khreisheh, S. V. Taylor, J. Kilner, A. A.
+Faisal, B. A. Bradley, T. Chaminade, and D. Stout. 2015. {``Acquisition
+of Paleolithic Toolmaking Abilities Involves Structural Remodeling to
+Inferior Frontoparietal Regions.''} \emph{Brain Structure and Function}
+220 (4): 2315--31. \url{https://doi.org/10.1007/s00429-014-0789-6}.
+
+\leavevmode\hypertarget{ref-isaac1976}{}%
+Isaac, Glynn L. 1976. {``Stages of Cultural Elaboration in the
+Pleistocene: Possible Archaeological Indicators of the Development of
+Language Capabilities.''} \emph{Annals of the New York Academy of
+Sciences} 280 (1): 275--88.
+\url{https://doi.org/10.1111/j.1749-6632.1976.tb25494.x}.
+
+\leavevmode\hypertarget{ref-lombao2017}{}%
+Lombao, D., M. Guardiola, and M. Mosquera. 2017. {``Teaching to Make
+Stone Tools: New Experimental Evidence Supporting a Technological
+Hypothesis for the Origins of Language.''} \emph{Scientific Reports} 7
+(1): 1--14. \url{https://doi.org/10.1038/s41598-017-14322-y}.
+
+\leavevmode\hypertarget{ref-morgan2015}{}%
+Morgan, T. J. H., N. T. Uomini, L. E. Rendell, L. Chouinard-Thuly, S. E.
+Street, H. M. Lewis, C. P. Cross, et al. 2015. {``Experimental Evidence
+for the Co-Evolution of Hominin Tool-Making Teaching and Language.''}
+\emph{Nature Communications} 6 (1): 6029.
+\url{https://doi.org/10.1038/ncomms7029}.
+
+\leavevmode\hypertarget{ref-nonaka2010}{}%
+Nonaka, Tetsushi, Blandine Bril, and Robert Rein. 2010. {``How Do Stone
+Knappers Predict and Control the Outcome of Flaking? Implications for
+Understanding Early Stone Tool Technology.''} \emph{Journal of Human
+Evolution} 59 (2): 155--67.
+\url{https://doi.org/10.1016/j.jhevol.2010.04.006}.
+
+\leavevmode\hypertarget{ref-oakley1949}{}%
+Oakley, Kenneth P. 1949. \emph{Man the Toolmaker}. London: Trustees of
+the British Museum.
+
+\leavevmode\hypertarget{ref-ohnuma1997}{}%
+Ohnuma, Katsuhiko, Kenichi Aoki, and And Takeru Akazawa. 1997.
+{``Transmission of Tool-Making Through Verbal and Non-Verbal
+Commu-Nication: Preliminary Experiments in Levallois Flake
+Production.''} \emph{Anthropological Science} 105 (3): 159--68.
+\url{https://doi.org/10.1537/ase.105.159}.
+
+\leavevmode\hypertarget{ref-pargeter2020}{}%
+Pargeter, Justin, Nada Khreisheh, John J. Shea, and Dietrich Stout.
+2020. {``Knowledge Vs. Know-How? Dissecting the Foundations of Stone
+Knapping Skill.''} \emph{Journal of Human Evolution} 145 (August):
+102807. \url{https://doi.org/10.1016/j.jhevol.2020.102807}.
+
+\leavevmode\hypertarget{ref-pargeter2019}{}%
+Pargeter, Justin, and John J. Shea. 2019. {``Going Big Versus Going
+Small: Lithic Miniaturization in Hominin Lithic Technology.''}
+\emph{Evolutionary Anthropology: Issues, News, and Reviews} 28 (2):
+72--85. \url{https://doi.org/10.1002/evan.21775}.
+
+\leavevmode\hypertarget{ref-putt2017}{}%
+Putt, Shelby S., Sobanawartiny Wijeakumar, Robert G. Franciscus, and
+John P. Spencer. 2017. {``The Functional Brain Networks That Underlie
+Early Stone Age Tool Manufacture.''} \emph{Nature Human Behaviour} 1
+(6): 1--8. \url{https://doi.org/10.1038/s41562-017-0102}.
+
+\leavevmode\hypertarget{ref-putt2019}{}%
+Putt, Shelby S., Sobanawartiny Wijeakumar, and John P. Spencer. 2019.
+{``Prefrontal Cortex Activation Supports the Emergence of Early Stone
+Age Toolmaking Skill.''} \emph{NeuroImage} 199 (October): 57--69.
+\url{https://doi.org/10.1016/j.neuroimage.2019.05.056}.
+
+\leavevmode\hypertarget{ref-putt2014}{}%
+Putt, Shelby S., Alexander D. Woods, and Robert G. Franciscus. 2014.
+{``The Role of Verbal Interaction During Experimental Bifacial Stone
+Tool Manufacture.''} \emph{Lithic Technology} 39 (2): 96--112.
+\url{https://doi.org/10.1179/0197726114Z.00000000036}.
+
+\leavevmode\hypertarget{ref-rein2014}{}%
+Rein, Robert, Tetsushi Nonaka, and Blandine Bril. 2014. {``Movement
+Pattern Variability in Stone Knapping: Implications for the Development
+of Percussive Traditions.''} \emph{PLOS ONE} 9 (11): e113567.
+\url{https://doi.org/10.1371/journal.pone.0113567}.
+
+\leavevmode\hypertarget{ref-roux1995}{}%
+Roux, Valentine, Blandine Bril, and Gilles Dietrich. 1995. {``Skills and
+Learning Difficulties Involved in Stone Knapping: The Case of
+Stone{-}Bead Knapping in Khambhat, India.''} \emph{World Archaeology} 27
+(1): 63--87. \url{https://doi.org/10.1080/00438243.1995.9980293}.
+
+\leavevmode\hypertarget{ref-stout2002}{}%
+Stout, Dietrich. 2002. {``Skill and Cognition in Stone Tool Production:
+An Ethnographic Case Study from Irian Jaya.''} \emph{Current
+Anthropology} 43 (5): 693--722. \url{https://doi.org/10.1086/342638}.
+
+\leavevmode\hypertarget{ref-stout2015}{}%
+Stout, Dietrich, and Nada Khreisheh. 2015. {``Skill Learning and Human
+Brain Evolution: An Experimental Approach.''} \emph{Cambridge
+Archaeological Journal} 25 (4): 867--75.
+\url{https://doi.org/10.1017/S0959774315000359}.
+
+\leavevmode\hypertarget{ref-stout2011}{}%
+Stout, Dietrich, Richard Passingham, Christopher Frith, Jan Apel, and
+Thierry Chaminade. 2011. {``Technology, expertise and social cognition
+in human evolution.''} \emph{The European Journal of Neuroscience} 33
+(7): 1328--38. \url{https://doi.org/10.1111/j.1460-9568.2011.07619.x}.
+
+\leavevmode\hypertarget{ref-stout2005}{}%
+Stout, Dietrich, Jay Quade, Sileshi Semaw, Michael J. Rogers, and Naomi
+E. Levin. 2005. {``Raw Material Selectivity of the Earliest Stone
+Toolmakers at Gona, Afar, Ethiopia.''} \emph{Journal of Human Evolution}
+48 (4): 365--80. \url{https://doi.org/10.1016/j.jhevol.2004.10.006}.
+
+\leavevmode\hypertarget{ref-stout2019}{}%
+Stout, Dietrich, Michael J. Rogers, Adrian V. Jaeggi, and Sileshi Semaw.
+2019. {``Archaeology and the Origins of Human Cumulative Culture: A Case
+Study from the Earliest Oldowan at Gona, Ethiopia.''} \emph{Current
+Anthropology} 60 (3): 309--40. \url{https://doi.org/10.1086/703173}.
+
+\leavevmode\hypertarget{ref-tehrani2008}{}%
+Tehrani, Jamshid J., and Felix Riede. 2008. {``Towards an Archaeology of
+Pedagogy: Learning, Teaching and the Generation of Material Culture
+Traditions.''} \emph{World Archaeology} 40 (3): 316--31.
+\url{https://doi.org/10.1080/00438240802261267}.
+
+\leavevmode\hypertarget{ref-washburn1960}{}%
+Washburn, Sherwood L. 1960. {``Tools and Human Evolution.''}
+\emph{Scientific American} 203 (3): 62--75.
+\url{https://doi.org/10.1038/scientificamerican0960-62}.
+
+\leavevmode\hypertarget{ref-wilkins2018}{}%
+Wilkins, Jayne. 2018. {``The Point Is the Point: Emulative Social
+Learning and Weapon Manufacture in the Middle Stone Age of South
+Africa.''} In, edited by Michael J. O'Brien, Briggs Buchanan, and Metin
+I. Eren, 153--74. Cambridge, MA: The MIT Press.
+
+\leavevmode\hypertarget{ref-wynn1979}{}%
+Wynn, Thomas. 1979. {``The Intelligence of Later Acheulean Hominids.''}
+\emph{Man} 14 (3): 371--91. \url{https://doi.org/10.2307/2801865}.
+
+\leavevmode\hypertarget{ref-wynn2004}{}%
+Wynn, Thomas, and Frederick L. Coolidge. 2004. {``The expert Neandertal
+mind.''} \emph{Journal of Human Evolution} 46 (4): 467--87.
+\url{https://doi.org/10.1016/j.jhevol.2004.01.005}.
+
+\end{CSLReferences}
+
+\bibliographystyle{spbasic}
 \bibliography{bibliography.bib}
 
 \end{document}
