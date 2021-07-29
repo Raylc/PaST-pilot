@@ -42,58 +42,83 @@ abstract: |
 
 
 bibliography: bibliography.bib
-bibstyle: spbasic
+bibstyle: spmpsci
 # bibstyle options spbasic(default), spphys, spmpsci
 output: rticles::springer_article
 ---
 
 # Introduction {#intro}
 
-Stone tools have long been seen as a key source of evidence for understanding human behavioral and cognitive evolution [@darwin1871; @oakley1949; @washburn1960]. Pathbreaking attempts to infer specific cognitive capacities from this evidence largely focused on the basic requirements of tool production [@isaac1976; @wynn1979; @gowlett1984; @wynn2004]. More recently, increasing attention has been directed to the processes and demands of stone tool making skill acquisition [@roux1995; @stout2002; @stout2005; @geribàs2010; @nonaka2010; @stout2011; @putt2014; @hecht2015; @duke2015; @morgan2015; @stout2015; @lombao2017; @putt2017; @cataldo2018; @putt2019; @pargeter2019; @pargeter2020]. This is motivated by the expectation that the most salient cognitive demands of tool making should occur during learning rather than routine expert performance [@stout2015] and by interest in the relevance of different social learning mechanisms such as imitation [@rein2014; @stout2019], emulation [@tehrani2008; @wilkins2018], and language [@ohnuma1997; @putt2014; @morgan2015; @lombao2017; @putt2017; @cataldo2018] to the reproduction of Paleolithic technologies.
+Stone tools have long been seen as a key source of evidence for understanding human behavioral and cognitive evolution [@darwin1871; @oakley1949; @washburn1960]. Pathbreaking attempts to infer specific cognitive capacities from this evidence largely focused on the basic requirements of tool production [@isaac1976; @wynn1979; @gowlett1984; @wynn2004]. More recently, increasing attention has been directed to the processes and demands of stone tool making skill acquisition [@roux1995; @stout2002; @stout2005; @geribàs2010; @nonaka2010; @stout2011; @putt2014; @hecht2015a; @duke2015; @morgan2015; @stout2015; @lombao2017; @putt2017; @cataldo2018; @putt2019; @pargeter2019; @pargeter2020]. This is motivated by the expectation that the most salient cognitive demands of tool making should occur during learning rather than routine expert performance [@stout2015] and by interest in the relevance of different social learning mechanisms such as imitation [@rein2014; @stout2019], emulation [@tehrani2008; @wilkins2018], and language [@ohnuma1997; @putt2014; @morgan2015; @lombao2017; @putt2017; @cataldo2018] to the reproduction of Paleolithic technologies.
+
+Studies investigating these questions have used a range of different experimental designs (e.g., varying technological goals/instructions, training times, raw materials, live vs. recorded instruction, lithic/skill assessment metrics, pseudo-knapping tasks etc.) and reached disparate conclusions regarding the neurocognitive and social foundations of skill acquisition. It is plausible that these discordant results reflect actual diversity in how humans acquire and master stone tool making skills. However, this failure of results to generalize across artificial experimental manipulations [[cf](cf.%20Yarkoni%202020). @yarkoni2020] also raises doubts regarding the external validity [@eren2016] of conclusions with respect to real-world Paleolithic learning contexts. To address this, we conducted an exploratory study that draws on lessons from previous research in an attempt to balance the pragmatic and theoretical tradeoffs inherent in experimental studies of stone knapping skill acquisition [@pargeter2019; @stout2015].
+
+Learning real-world skills like stone knapping is highly demanding of time and materials and difficult to control experimentally without sacrificing generalizability to real world conditions. Prior efforts have attempted to navigate these challenges by using various combinations of 1) inauthentic raw materials that are less expensive, easier to standardize, and/or easier to knap, 2) video-recorded instruction that is uniform across participants and less demanding of experimenter time, 3) short learning periods, 4) small sample sizes, and 5) single learning conditions. The difficulty of interpreting results from this growing literature led Stout and Khreisheh [-@stout2015: 870, emphasis original] to call for "studies with sufficient sample sizes to manipulate learning conditions (e.g. instruction, motivation) and assess individual variation (e.g. performance, psychometrics, neuroanatomy) that *also* have realistic learning periods." The current study attempts to strike a viable balance between these demands by investigating early-stage learning of a relatively simple technology (least effort, "Oldowan," flake production [@reti2016; @shea2016] under two instructional conditions while collecting data on individual differences in strength, coordination, cognition, social learning, self-control, and task engagement. Unlike any previous study, this allows us to address the likelihood that group effects of training conditions might be impacted by interactions with individual participant differences in aptitude, motivation, or learning style.
+
+We focus on early stage learning because it has been found to be relatively rapid, variable across individuals, and predictive of later outcomes [@pargeter2019; @stout2015; @putt2019], and thus provides a reasonable expectation of generating meaningful data on skill and learning variation while minimizing training costs. Moreover, understanding the minimum training times necessary to detect changes in tool making skill will help archaeologists design more realistic and cost-effective experiments. To further manage costs, we limited our study to only two learning conditions (observation only vs. active teaching). This targets a key controversy in human evolution, namely the origins of teaching and language [@gärdenfors2017; @morgan2015], while avoiding highly artificial manipulations of dubious relevance to real-world Paleolithic learning. These choices allowed us to invest more in other aspects of research design that we identified as theoretically important, including measurement of individual differences in cognition and behavior, inclusion of an in-person, fully interactive teaching condition, and use of naturalistic raw materials. Sample size remained small in this internally funded exploratory study but could easily be scaled up at funding levels typical of pre- and post-doctoral research grants in archaeology.
 
 ## **Individual Differences**
 
+"*The many slight differences... being observed in the individuals of the same species inhabiting the same confined locality, may be called individual differences... These individual differences are of the highest importance to us, for they are often inherited ... and they thus afford materials for natural selection to act on and accumulate...*" [@darwin1859, Chapter 2]
+
+Individuals vary in aptitude and learning style for particular skills [@jonassen1993] but this has largely been ignored in studies of knapping skill acquisition, which have instead focused on group effects of different experimental conditions. There are good pragmatic reasons for this, as individual difference studies typically require larger sample sizes and additional data collection. However, overlooking these distinctions is not ideal since individual differences can provide valuable insight into the mechanisms, development, and evolution of cognition and behavior [@boogert2018]. In particular, patterns of association between cognitive traits and behavioral performance can be used to test hypotheses about the cognitive demands of learning particular skills and the likely targets of natural selection acting on aptitude. More prosaically, individual differences can introduce an unexamined and uncontrolled source of variation in group level results. This is especially true in the relatively small "samples of convenience" typical of experimental archaeology.
+
+While testing hypotheses in evolutionary cognitive archaeology remains a considerable challenge [@wynn2017], investigation of individual variation in modern research participants represents one promising direction. For any particular behavior of archaeological interest, it is expected that standing variation in modern populations should remain relevant to normal variation in learning aptitude. The presence of trait variation without impact on learning aptitude would provide strong evidence against the plausibility of the proposed evolutionary relationship. An absence of variation (i.e., past fixation and rigorous developmental canalization) is not expected given the known variability of human brains and cognition [@sherwood2017; @barrett2020]. Any confirmatory findings of trait-aptitude correspondence would then have the testable implication that humans should be evolutionarily derived along the same dimension [e.g. @hecht2015b].
+
+To date, a small number of "neuroarchaeological" studies have reported associations between individual knapping performance and brain structure or physiological responses. Hecht et al. [-@hecht2015a] reported training-related changes in white matter integrity (fractional anisotropy [FA]) that correlated with individual differences in practice time and striking accuracy change. The regional patterning of FA changes also varied across individuals, with only those individuals who displayed early increases in FA under the right ventral precentral gyrus (premotor cortex involved in movement planning and guidance) showing striking accuracy improvement over the training period. Putt et al. [-@putt2019] similarly found that the proportion of flakes to shatter produced by individuals during handaxe making correlated with dorsal precentral gyrus (motor cortex) activation. Pargeter et al. [-@pargeter2020] used a flake prediction paradigm [modeled after @nonaka2010] to confirm that striking force and accuracy are important determinants of handaxe-making success. These findings all point to the central role of perceptual-motor systems [@stout2007] and coordination [@roux1995] in knapping skill acquisition. In addition, Putt et al. [-@putt2019] also found successful flake production to be associated with prefrontal (working memory/cognitive control) activation and Stout et al. (2015) found that prefrontal activation correlated with success at a strategic judgement (platform selection) task which in turn was predictive of success at out-of-scanner handaxe production. Such investigations are thus starting to chart out the more specific contributions of different neural systems to particular aspects of knapping skill acquisition. To date, however, the cognitive/functional interpretation of systems identified in this manner has largely relied on informal reverse inference (reasoning backward from observed activations to inferred mental processes) from published studies of other tasks that activated the same regions, an approach which is widely regarded as problematic [@poldrack2011].
+
+Here we take a more direct, psychometric approach to measuring individual differences in perceptual-motor coordination and cognition. Psychometric instruments (e.g., tasks, questionnaires) are designed to assess variation in cognitive traits and states, such as fluid intelligence, working memory, attention, motivation, and personality, that have been of theoretical interest to cognitive archaeologists [e.g., @wynn2016]. It is thus surprising that they have been almost entirely neglected in experimental studies of knapping skill. In the only published example we are aware of, Pargeter et al. [-@pargeter2019] reported significant effects of variation in planning and problem solving (Tower of London test [@shallice1982]) and cognitive set shifting (Wisconsin Card Sort test [@grant1948]) on early stage handaxe learning. Of course, cognition is not the only thing that can affect knapping performance. Flake prediction experiments highlight the importance of regulating movement speed/accuracy trade-offs [@nonaka2010; @pargeter2020] and studies of muscle recruitment [@marzke1998] and manual pressure [@williams-hatala2018; @key2018] during knapping highlight basic strength requirements. Along these lines, Key and Lycett [-@key2019] found that individual differences in hand size, shape, and especially grip strength were better predictors of force loading during stone tool use than were attributes of the tools themselves. However, we are unaware of any such studies of biometric influences on variation in knapping success. Finally, the time and effort demands of knapping skill acquisition suggest that differences in personality (e.g., self-control and "grit" [@pargeter2019], motivation [@stout2002], and social vs. individual learning strategies [@miu2020] might also affect learning outcomes. We are again unaware of any previous studies that have assessed such effects. In this study, we assessed all participants with a battery of tests including grip strength, movement speed/accuracy, spatial working memory, fluid intelligence, self-control, tendency to use social information, and motivation/engagement with the tool making task. We were particularly interested in the possibility that these variables might not only impact learning generally, but might also have different effects under different learning conditions. 
+
 ## **Teaching, Language, and Tool Making**
 
+*A creature that learns to make tools to a complex pre-existing pattern...must have the kind of abstracting mind that would be of high selective value in facilitating the development of the ability to communicate such skills by the necessary verbal acts.* [@montagu1976: 267]
+
+Possible links between tool making and language have been a subject of speculation for nearly 150 years [@engles2003[1873]], if not longer [@hewes1993], although compelling empirical tests have remained elusive. Over 25 years ago, Toth and Schick [-@toth1993] suggested that experiments teaching modern participants to make stone tools in verbal and non-verbal conditions could test the importance of language in the social reproduction of Paleolithic technologies. Ohnuma et al. [-@ohnuma1997] were the first to implement this suggestion in a study of Levallois flake production, followed by more recent studies of handaxe making [@putt2014; @putt2017] and simple flake production [@morgan2015; @cataldo2018; @lombao2017]. This reflects recent interest in the hypothesis that language might be an adaptation for teaching [e.g., @laland2017; @stout2012]. Teaching and learning demands of Paleolithic tool making would thus provide evidence of selective contexts favoring language evolution [@stout2010; @morgan2015; @montagu1976].
+
+\
+
 ## **Raw materials and knapping skill**
-
-
 
 # **Materials and Methods**
 
 ## **Participants**
+
 ## **Study Visit**
 
 ## **Individual Difference Measures**
 
-##  **Stone Tool Making**
+## **Stone Tool Making**
 
 ### **Raw Materials**
+
 ### **Experimental Conditions**
-##  **Lithic Analysis**
-##  **Statistical Analyses**
 
+## **Lithic Analysis**
 
-# **Results** 
+## **Statistical Analyses**
+
+# **Results**
+
 ## **Principal Component analyses**
 
 ### **Flake size and shape**
+
 ### **Lithic flaking performance measures**
 
 ## **Do trained, untrained, and expert knappers perform differently?**
 
 ## **Does training/practice time impact flaking performance?**
 
-## **Do individual differences in motor skill and psychometric measures predict flaking performance? **
+## **Do individual differences in motor skill and psychometric measures predict flaking performance?** 
+
 ### **Model 1: Individual differences and quantity flaking**
+
 ### **Model 2: Individual differences and quality flaking**
 
-# **Discussion** 
+# **Discussion**
 
-# **Conclusions** 
+# **Conclusions**
 
-
-# **Acknowledgments** 
+# **Acknowledgments**
 
 # **References**
-
