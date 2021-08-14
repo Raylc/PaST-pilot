@@ -1,4 +1,4 @@
-##Libraries####
+#### Libraries ####
 detachAllPackages <- function() {
       
       basic.packages <- c("package:stats","package:graphics","package:grDevices","package:utils","package:datasets","package:methods","package:base")
@@ -12,16 +12,15 @@ detachAllPackages <- function() {
 }
 
 detachAllPackages()
+Sys.setenv(JAVA_HOME="")
+Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_301')
+library(tidyverse)
 library(car)
-library(ggplot2)
 library(reshape2)
-library(tidyr)
 library(plyr)
-library(dplyr)
 library(DescTools)
-library(stringr)
-library("factoextra")
-library("psych") 
+library(factoextra)
+library(psych) 
 library(Hmisc)
 library(glmulti)
 library(report)
@@ -31,36 +30,37 @@ library(rcompanion)
 library(caret)
 library(permuco)
 
-#### Import datasets #### ####
 
-experiment_data<-read.csv("/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/past_cores_result.csv") %>%
+#### Import datasets ####
+
+experiment_data<-read.csv("data/past_cores_result.csv") %>%
       rename(subject_id = Subject,
              core_number = nodule_number) %>%
       mutate(subject_id=as.factor(subject_id),
              core_number=as.factor(core_number),
              Condition=as.factor(Condition))
 
-experiment_core_usedata<-read.csv("/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/core_use_records.csv") %>%
+experiment_core_usedata<-read.csv("data/core_use_records.csv") %>%
       mutate(subject=as.factor(subject),
              core_number=as.factor(core_number))
 
-lithic_data<-read.csv("past_pilot_lithics.csv") %>%
+lithic_data<-read.csv("data/past_pilot_lithics.csv") %>%
       rename(flake_mass = flake_mass,
              flake_max_thickness = max_thickness,
              core_final_mass=core_mass) %>%
       mutate(core_number_nyu=core_number) %>%
       rename(subject_id_nyu=subject_id) 
 
-extra_thickness_flakes<-read.csv("extra_flakes.csv") 
+extra_thickness_flakes<-read.csv("data/extra_flakes.csv") 
   
-pre_exp_cores_data<-read.csv("/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/pre_exp_cores_data.csv") %>%
+pre_exp_cores_data<-read.csv("data/pre_exp_cores_data.csv") %>%
       rename(core_number = nodule_number) %>%
       mutate(core_number=as.factor(core_number))
 
-incremental_width<-list.files("/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/combined_txt_files", pattern="*.txt")
-area_size<- read.csv(file = "/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/area_size_combined_cheng_aditi_megan.csv")
+incremental_width<-list.files("data/combined_txt_files", pattern="*.txt")
+area_size<- read.csv(file = "data/area_size_combined_cheng_aditi_megan.csv")
 
-psychometrics<-read.csv(file = "/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/past_psychometrics.csv") %>%
+psychometrics<-read.csv(file = "data/past_psychometrics.csv") %>%
       rename(subject = Subject) %>%
       mutate(subject=as.factor(subject))
 
@@ -75,7 +75,7 @@ open_read<-function(filename, foldername){
 }
 
 # execute the txt file opening function
-flake_plan_measurements<-do.call(rbind,lapply(incremental_width,open_read,"/Users/JustinPargeter/Google Drive/Projects/PaST/Pilot experiment/Lithics/Experiment database/past_stats/past_stats/combined_txt_files"))
+flake_plan_measurements<-do.call(rbind,lapply(incremental_width,open_read,"data/combined_txt_files"))
 
 # reshape the herbi measurement data
 cols <- c("subject","core_number","flake_number")
@@ -219,7 +219,6 @@ pca_flakes<- complete_past_data_plusflakes_updated[!is.na(complete_past_data_plu
       subset(!subject %in% c("demo")) 
 
 # determine factorability
-library(psych)
 bartlett.test(pca_flakes[,c(15,24,26:34)])
 
 # create identifiers datasets for rejoining
@@ -433,26 +432,22 @@ pca_skill_data_bycore<-complete_past_data_shape_pca_expert_summary %>%
       subset(!subject=="demo" & !core_number==113) %>% #removing core 113 
       ungroup() %>%
       select(c("core_number","mass_flakes_flaked_mass_bycore","total_flakes_above40mm_5g_bycore",
-                "delta_mass","flake_pca_dim1_bycore","flake_pca_dim2_bycore","flake_pca_dim3_bycore",
-                  "Total_Cores_Used"))  %>%
+                "delta_mass","flake_pca_dim1_bycore","flake_pca_dim2_bycore","flake_pca_dim3_bycore"))  %>%
       dplyr::rename(Mass_flakes_flaked_mass = mass_flakes_flaked_mass_bycore,
                     large_flake_count=total_flakes_above40mm_5g_bycore,
                     Delta_mass = delta_mass,
                     Shape_PC2_relative_thickness = flake_pca_dim2_bycore,
                     Shape_PC1_size = flake_pca_dim1_bycore,
-                    Shape_PC3_thick_basal_tip_width = flake_pca_dim3_bycore,
-                    Total_cores_used = Total_Cores_Used) %>%
+                    Shape_PC3_thick_basal_tip_width = flake_pca_dim3_bycore) %>%
       distinct(core_number,.keep_all=T) %>%
       select(-core_number)
 
 pca_skill_metrics<-prcomp(na.omit(pca_skill_data_bycore), scale. = T)
 
 # determine factorability
-library(psych)
 bartlett.test(pca_skill_data_bycore)
 
 # Graph of variables
-library(factoextra)
 fviz_pca_var(pca_skill_metrics,
              col.ind = "cos2", # Color by the quality of representation
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
@@ -487,7 +482,8 @@ skill_joined_to_identifiers<-join(indiv_core_skill_scores,subject_flake_core_ski
 complete_past_data_shape_skill_pca_combined<-join(complete_past_data_shape_pca_expert_summary,
                                 skill_joined_to_identifiers,
                                 by=c("core_number")) %>%
-      mutate(skill_pca_dim2_quality_flaking=skill_pca_dim2_quality_flaking*-1) %>% #transform sign so higher = better
+      mutate(skill_pca_dim2_quality_flaking=skill_pca_dim2_quality_flaking*-1,
+             skill_pca_dim1_quantity_flaking=skill_pca_dim1_quantity_flaking*-1) %>% #transform sign so higher = better
       distinct(core_number,.keep_all=T)
 
 #Are PC 1 and 2 related?
@@ -510,6 +506,7 @@ ggplot(subset(subject_skillPC_data),
       xlab("Factor 2 'Quantity flaking' (higher = higher quantity flaking)")+
       theme(text = element_text(size=16))
 
+summary(lm(skill_pca_dim1_quantity_flaking~skill_pca_dim2_quality_flaking+Condition, data=subject_skillPC_data))
 summary(lm(skill_pca_dim1_quantity_flaking~skill_pca_dim2_quality_flaking, data=subset(subject_skillPC_data,Condition==1 &skill_pca_dim2_quality_flaking>-1)))
 summary(lm(skill_pca_dim1_quantity_flaking~skill_pca_dim2_quality_flaking, data=subset(subject_skillPC_data,Condition==0 &skill_pca_dim2_quality_flaking>-1)))
 
@@ -520,8 +517,7 @@ complete_past_data_shape_skill_pca_combined_bycore<-complete_past_data_shape_ski
       mutate(condition_threeway = case_when(subject == 'demo' ~ "expert",
                                             Condition == '0' ~ "untrained",
                                             Condition == '1' ~ "trained",
-                                          TRUE ~ "NA"),
-             core_shape=maxlength_core*maxwidth_core*maxthickness_core)
+                                          TRUE ~ "NA")) 
 
 complete_past_data_shape_skill_pca_combined_byflake<-complete_past_data_shape_pca_expert %>%
       mutate(condition_threeway = case_when(subject == 'demo' ~ "expert",
@@ -529,11 +525,100 @@ complete_past_data_shape_skill_pca_combined_byflake<-complete_past_data_shape_pc
                                             Condition == '1' ~ "trained",
                                             TRUE ~ "NA"))
 
-# Skill PC comparisons between novice groups
-ggplot(filter(model_data), aes(x=Condition, y=skill_pca_dim1_quantity_flaking)) +
-  geom_boxplot()+
-  geom_jitter()
+## Are performance variances different between groups? 
+#and what do the highest variance differences look like?
 
+var.test(skill_pca_dim1_quantity_flaking ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
+         alternative = "two.sided")
+
+var.test(skill_pca_dim2_quality_flaking ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
+         alternative = "two.sided")
+ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
+       aes(x=Condition, y=skill_pca_dim2_quality_flaking, color=Condition)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3,position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('Untrained','Trained'))+
+  theme_classic() +
+  theme(legend.position = "none")+
+  xlab("") +
+  ylab("Quality flaking (higher = more quality flaking)")+
+  theme(text = element_text(size=20))
+
+var.test(flake_pca_dim1 ~ Condition, complete_past_data_shape_skill_pca_combined_byflake, 
+         alternative = "two.sided")
+
+var.test(flake_pca_dim2 ~ Condition, complete_past_data_shape_skill_pca_combined_byflake, 
+         alternative = "two.sided")
+
+var.test(flake_pca_dim3 ~ Condition, complete_past_data_shape_skill_pca_combined_byflake, 
+         alternative = "two.sided")
+
+var.test(total_flakes_above40mm_5g_bycore ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
+         alternative = "two.sided")
+ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
+       aes(x=Condition, y=total_flakes_above40mm_5g_bycore, color=Condition)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3,position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('Untrained','Trained'))+
+  theme_classic() +
+  theme(legend.position = "none")+
+  xlab("") +
+  ylab("Large detached piece count")+
+  theme(text = element_text(size=20))
+
+var.test(mass_flakes_flaked_mass_bycore ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
+         alternative = "two.sided")
+
+var.test(delta_mass ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
+         alternative = "two.sided")
+ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
+       aes(x=Condition, y=delta_mass, color=Condition)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(position = position_jitterdodge()) +
+  theme_classic() +
+  theme(legend.position = "none")+
+  xlab("") +
+  ylab("Core delta mass")+
+  theme(text = element_text(size=20))
+
+var.test(Total_Cores_Used ~ Condition, total_mass_data, 
+         alternative = "two.sided")
+ggplot(filter(total_mass_data,!subject=="demo"), 
+       aes(x=Condition, y=Total_Cores_Used, color=Condition)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3,position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('Untrained','Trained'))+
+  theme_classic() +
+  theme(legend.position = "none")+
+  xlab("") +
+  ylab("Total cores used")+
+  theme(text = element_text(size=20))
+
+#create total mass variable for variance comparisons
+total_mass_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
+  group_by(subject) %>% 
+  mutate(removed_mass_sum=sum(core_start_mass-core_final_mass)) %>%
+  select(c(subject,Condition,removed_mass_sum,Total_Cores_Used)) %>%
+  distinct(subject, .keep_all=T)
+
+var.test(removed_mass_sum ~ Condition, total_mass_data, 
+         alternative = "two.sided")
+ggplot(filter(total_mass_data,!subject=="demo"), 
+       aes(x=Condition, y=removed_mass_sum, color=Condition)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3,position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('Untrained','Trained'))+
+  theme_classic() +
+  theme(legend.position = "none")+
+  xlab("") +
+  ylab("Total mass removed from cores")+
+  theme(text = element_text(size=20))
+
+## Skill factor comparisons between novice groups
 leveneTest(skill_pca_dim1_quantity_flaking ~ Condition, data = subject_skillPC_data)
 aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
         data = subject_skillPC_data)
@@ -547,7 +632,7 @@ leveneTest(skill_pca_dim2_quality_flaking ~ Condition, data = filter(complete_pa
 aovperm(skill_pca_dim2_quality_flaking ~ Condition,
         data = subject_skillPC_data)
 
-# Flake shape
+## Flake shape
 ggplot(complete_past_data_shape_skill_pca_combined_byflake, aes(x=condition_threeway, y=flake_pca_dim1))+
   geom_boxplot()
 
@@ -567,16 +652,19 @@ leveneTest(flake_pca_dim3 ~ condition_threeway, data = complete_past_data_shape_
 aovperm(flake_pca_dim3 ~ condition_threeway, #implement permutation tests for un-equal variances
         data = complete_past_data_shape_skill_pca_combined_byflake)
 
-# Performance skill, compare by attribute to allow for comparisons between expert and novice, and between PC scores for novice groups
-
-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=total_flakes_above40mm_5g_bycore)) +
-  geom_boxplot()+
-  geom_jitter()+
+## Performance skill, compare by attribute to allow for comparisons between expert and novice, and between PC scores for novice groups
+ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=total_flakes_above40mm_5g_bycore, color=condition_threeway)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3, position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Instructor","Untrained", "Trained"), values = c("purple","blue", "red"))+
+  scale_x_discrete(labels = c('Instructor','Untrained','Trained'))+
   theme_classic() +
+  theme(legend.position = "none")+
   xlab("") +
   ylab("Large (>40mm and 5g) flake count")+
   theme(text = element_text(size=20))
 
+#are variances the same, if not then use non-parametric anova (aovperm) and effect size estimate
 leveneTest(total_flakes_above40mm_5g_bycore ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_bycore)
 aovperm(total_flakes_above40mm_5g_bycore ~ condition_threeway,
         data = complete_past_data_shape_skill_pca_combined_bycore)
@@ -587,17 +675,14 @@ aovperm(total_flakes_above40mm_5g_bycore ~ Condition,
 epsilonSquared(x = complete_past_data_shape_skill_pca_combined_bycore$total_flakes_above40mm_5g_bycore,
                g = complete_past_data_shape_skill_pca_combined_bycore$condition_threeway)
 
-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=mass_flakes_flaked_mass_bycore)) +
-      geom_boxplot() +
-      geom_jitter()
-leveneTest(mass_flakes_flaked_mass_bycore ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_bycore) #test for homogeneity of variances
-aov_3<-aov(mass_flakes_flaked_mass_bycore~condition_threeway, data=complete_past_data_shape_skill_pca_combined_bycore)
-aov_3 %>% report() %>% as.report_table(summary=TRUE)
-
-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=delta_mass)) +
-      geom_boxplot()+
-      geom_jitter()+
+# delta mass
+ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=delta_mass, color=condition_threeway)) +
+  geom_boxplot(outlier.size=0)+
+  geom_point(size=3, position = position_jitterdodge()) +
+  scale_color_manual(labels = c("Instructor","Untrained", "Trained"), values = c("purple","blue", "red"))+
+  scale_x_discrete(labels = c('Instructor','Untrained','Trained'))+
   theme_classic() +
+  theme(legend.position = "none")+
   xlab("") +
   ylab("Core delta mass")+
   theme(text = element_text(size=20))
@@ -612,6 +697,13 @@ aovperm(delta_mass ~ Condition,
 epsilonSquared(x = complete_past_data_shape_skill_pca_combined_bycore$delta_mass,
                g = complete_past_data_shape_skill_pca_combined_bycore$condition_threeway)
 
+# mass flakes
+ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=mass_flakes_flaked_mass_bycore)) +
+      geom_boxplot() +
+      geom_jitter()
+leveneTest(mass_flakes_flaked_mass_bycore ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_bycore)
+aov_3<-aov(mass_flakes_flaked_mass_bycore~condition_threeway, data=complete_past_data_shape_skill_pca_combined_bycore)
+aov_3 %>% report() %>% as.report_table(summary=TRUE)
 
 # Core final mass comparisons
 ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=log(core_final_mass))) +
@@ -632,9 +724,31 @@ aovperm(core_final_mass ~ Condition,
 epsilonSquared(x = complete_past_data_shape_skill_pca_combined_bycore$core_final_mass,
                g = complete_past_data_shape_skill_pca_combined_bycore$condition_threeway)
 
+# total cores knapped
+total_cores_knapped_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
+  distinct(subject, .keep_all=T)
+
+leveneTest(Total_Cores_Used ~ condition_threeway, data = filter(total_cores_knapped_data,!subject=="demo"))
+summary(aov(Total_Cores_Used ~ Condition,
+        data = total_cores_knapped_data))
+
+# Total removed mass knapped
+ggplot(subset(model_data, !is.na(Condition)), aes(x=Condition, y=removed_mass_sum)) +
+  geom_boxplot()+
+  geom_jitter()+
+  theme_classic() +
+  xlab("") +
+  ylab("Total mass removed from cores")+
+  theme(text = element_text(size=20))+ 
+  scale_x_discrete(labels = c('Untrained','Trained'))
+
+leveneTest(removed_mass_sum ~ Condition, data = filter(total_mass_data,!subject=="demo"))
+summary(aov(removed_mass_sum ~ Condition,
+        data = filter(total_mass_data,!subject=="demo")))
+
 #### learning rates ####
 
-# creat grouping variable for learning rates
+# create grouping variable for learning rates
 
 learning_rate_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
       filter(!subject=="demo") %>%
@@ -649,52 +763,123 @@ learning_rate_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
                                           TRUE ~ "80-100"),
              Condition=dplyr::recode(Condition, '0' = "Untrained", '1'="Trained")) %>%
       ungroup() %>%
-      select(c(subject, Condition, core_number, adjusted_cores_used,core_order_stage,
+      select(c(subject, Condition, core_number, Order,adjusted_cores_used,core_order_stage,
                flake_pca_dim1,flake_pca_dim2,flake_pca_dim3,
                skill_pca_dim1_quantity_flaking,
                skill_pca_dim2_quality_flaking,
                core_start_mass))
 
-# skill PCS, core size
+## Do different groups start out at different performance levels?
 
-aov(flake_pca_dim1~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
+start_data<-subset(learning_rate_data, core_order_stage=="0_20")
 
-aov(flake_pca_dim2~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
+ggplot(start_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
+  geom_boxplot(outlier.size = 0)+
+  geom_jitter()
 
-aov(flake_pca_dim3~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
-ggplot(subset(learning_rate_data,flake_pca_dim3 <3.5 ),aes(x=core_order_stage,y=flake_pca_dim3))+
+ggplot(start_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
+  geom_boxplot(outlier.size = 0)+
+  geom_jitter()
+
+middle_data<-subset(learning_rate_data, core_order_stage=="40_60")
+
+ggplot(middle_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
   geom_boxplot()+
-  theme_classic() +
-  xlab("Relative core order category (%)") +
-  ylab("Flake factor 3 (basal relative to tip width)")+
-  theme(text = element_text(size=20))
+  geom_jitter()
+
+ggplot(middle_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
+  geom_boxplot()+
+  geom_jitter()
+
+end_data<-subset(learning_rate_data, core_order_stage=="80-100")
+
+ggplot(end_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
+  geom_boxplot()+
+  geom_jitter()
+
+ggplot(end_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
+  geom_boxplot()+
+  geom_jitter()
+
+start_middle_end_data<-subset(learning_rate_data, core_order_stage %in% c("0_20", "40_60", "80-100"))
+
+ggplot(start_middle_end_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking, color=Condition))+
+  geom_boxplot(outlier.size = 0, outlier.colour = "white")+
+  geom_jitter()+
+  facet_wrap(~core_order_stage)
+summary(aov(skill_pca_dim1_quantity_flaking ~ Condition*core_order_stage,
+        data = start_middle_end_data))
+
+ggplot(start_middle_end_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking, color=Condition))+
+  geom_boxplot(outlier.size = 0, outlier.colour = "white")+
+  geom_jitter()+
+  facet_wrap(~core_order_stage)
+summary(aov(skill_pca_dim2_quality_flaking ~ Condition*core_order_stage,
+            data = start_middle_end_data))
+
+# and are their variances different at different learning stages?
+aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
+        data = start_data)
+aovperm(skill_pca_dim2_quality_flaking ~ Condition,
+        data = start_data)
+
+var.test(skill_pca_dim1_quantity_flaking ~ Condition, middle_data, 
+         alternative = "two.sided")
+var.test(skill_pca_dim2_quality_flaking ~ Condition, middle_data, 
+         alternative = "two.sided")
+aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
+        data = middle_data)
+aovperm(skill_pca_dim2_quality_flaking ~ Condition,
+        data = middle_data)
+
+var.test(skill_pca_dim1_quantity_flaking ~ Condition, end_data, 
+         alternative = "two.sided")
+var.test(skill_pca_dim2_quality_flaking ~ Condition, end_data, 
+         alternative = "two.sided")
+aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
+        data = end_data)
+aovperm(skill_pca_dim2_quality_flaking ~ Condition,
+        data = end_data)
+
+# skill PCS, core size, training
 
 aov(skill_pca_dim1_quantity_flaking~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
 
 aov(skill_pca_dim2_quality_flaking~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
 
-aov(log(core_start_mass)~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
-
-ggplot(learning_rate_data,aes(x=core_order_stage,y=log(core_start_mass), color=Condition))+
-      geom_boxplot()+
-      theme_classic() +
-      xlab("Relative core order category (%)") +
-      ylab("Nodule starting mass (log)")+
-      theme(text = element_text(size=20))
+learning_rate_data$Condition = factor(learning_rate_data$Condition, levels=c('Untrained','Trained'))
 
 ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim1_quantity_flaking, color=Condition))+
   geom_point()+
-  facet_wrap(~subject)+
+  facet_wrap(Condition~subject, dir="v", labeller = label_wrap_gen(multi_line=FALSE))+
   xlab("Relative core order %") +
   ylab("Skill PC 1 Quantity flaking")+
-  geom_smooth(method="loess",se=F)
+  geom_smooth(method="loess",se=F)+
+  theme_classic()+
+  theme(text = element_text(size=14))+
+  theme(legend.position = "NULL")
 
 ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim2_quality_flaking, color=Condition))+
   geom_point()+
-  facet_wrap(~subject)+
+  facet_wrap(Condition~subject, dir="v", labeller = label_wrap_gen(multi_line=FALSE))+
   xlab("Relative core order %") +
   ylab("Skill PC 2 Quality flaking")+
-  geom_smooth(method="loess",se=F)
+  geom_smooth(method="loess",se=F)+
+  theme_classic()+
+  theme(text = element_text(size=14))+
+  theme(legend.position = "NULL")
+
+aov(log(core_start_mass)~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
+
+ggplot(learning_rate_data,aes(x=Order,y=log(core_start_mass), color=Condition))+
+  geom_point()+
+  facet_wrap(~Condition)+
+  xlab("Core order") +
+  ylab("Nodule starting mass (log[g])")+
+  geom_smooth(method="lm",se=T)+
+  scale_x_continuous(breaks=seq(0,9,1))+
+  theme_classic()+
+  theme(text = element_text(size=20))
 
 #### Performance and individual variation models ####
 
@@ -709,23 +894,26 @@ model_data<-complete_past_data_psycho %>%
       drop_na(skill_pca_dim1_quantity_flaking) %>%
       mutate(core_shape=maxlength_core*maxwidth_core*maxthickness_core) %>%
       select(c(subject,Condition,core_number,skill_pca_dim1_quantity_flaking,
-               skill_pca_dim2_quality_flaking,core_shape,
+               skill_pca_dim2_quality_flaking,core_final_mass,core_start_mass,
                Highest_nBack,RPM,BEAST,
-               Grip_Strength, fitts_mtavg_ms,
-               core_start_mass)) %>%
+               Grip_Strength, fitts_mtavg_ms)) %>%
       group_by(subject) %>%
       mutate(skill_pca_dim1_quantity_flaking=mean(skill_pca_dim1_quantity_flaking),
-             skill_pca_dim2_quality_flaking=mean(skill_pca_dim2_quality_flaking)) %>%
+             skill_pca_dim2_quality_flaking=mean(skill_pca_dim2_quality_flaking),
+             core_start_mass_ave=mean(core_start_mass),
+             removed_mass_sum=sum(core_start_mass-core_final_mass)) %>%
       ungroup() %>%
       mutate(Highest_nBack=as.numeric(scale(Highest_nBack,center = TRUE)),
              RPM=as.numeric(scale(RPM,center = TRUE)),
              BEAST=as.numeric(scale(BEAST,center = TRUE)),
              core_start_mass=as.numeric(scale(core_start_mass,center = TRUE)),
              Grip_Strength=as.numeric(scale(Grip_Strength,center = TRUE)),
-             fitts_mtavg_ms=as.numeric(scale(fitts_mtavg_ms,center = TRUE))) %>%
+             fitts_mtavg_ms=as.numeric(scale(fitts_mtavg_ms,center = TRUE)),
+             core_start_mass_ave=as.numeric(scale(core_start_mass_ave,center = TRUE)),
+             removed_mass_sum=as.numeric(scale(removed_mass_sum,center = TRUE))) %>%
       distinct(subject, .keep_all=T) 
   
-### Skill PC 1 ####
+### Skill factor 1 model (quantity flaking) ####
 
 #generate complete model
 
@@ -748,14 +936,14 @@ summary(PC1_multi@objects[[1]]) #best model
 
 # add mass to final model, but not in model selection
 PC1_best_model<-lm(skill_pca_dim1_quantity_flaking~1+
-                     Condition + 
-                     Highest_nBack + 
+                     Highest_nBack+
                      BEAST+
-                     Grip_Strength + 
-                     fitts_mtavg_ms:RPM +
-                     Condition:Highest_nBack +
-                     Condition:BEAST +
-                     core_start_mass,
+                     fitts_mtavg_ms+
+                     Grip_Strength+
+                     Condition:Highest_nBack+
+                     Condition:BEAST+
+                     Condition:Grip_Strength+
+                     core_start_mass_ave,
                    data = model_data)
 
 summary(PC1_best_model)
@@ -771,73 +959,20 @@ ols_test_normality(PC1_best_model) #compare residuals against normal distributio
 library(lmtest)
 bptest(PC1_best_model) #test for heteroskedasticity
 
-#### check for overfitting ####
-
-set.seed(3456)
-trainIndex_PC1 <- createDataPartition(model_data$Condition, p = .7, 
-                                  list = FALSE, 
-                                  times = 1)
-
-PC1Train <- model_data[ trainIndex_PC1,]
-PC1Test  <- model_data[-trainIndex_PC1,]
-
-PC1_best_model_train<-lm(skill_pca_dim1_quantity_flaking~1+
-                           Condition + 
-                           Highest_nBack + 
-                           BEAST+
-                           Grip_Strength + 
-                           Condition:Highest_nBack +
-                           Condition:BEAST +
-                           core_start_mass,
-                   data = PC1Train)
-
-plot(PC1_best_model_train)
-
-summary(PC1_best_model_train)
-
-PC1.mod.test.pred <- predict(PC1_best_model_train, newdata=PC1Test)
-
-PC1.mod.test.R2 <- cor(PC1.mod.test.pred, PC1Test$skill_pca_dim1_quantity_flaking)^2
-PC1.mod.test.R2
-
-Overfitting.PC1.mod <- 0.83 - PC1.mod.test.R2
-Overfitting.PC1.mod
-
-##### plot PC 1 model ####
-
-pred.mm_condition <- ggpredict(PC1_best_model, terms = c("Condition"))  # this gives overall predictions for the model
-levels(pred.mm_condition$group) <- c("Untrained", "Trained")
-plot(pred.mm_condition,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-      labs(x = "Training condition", 
-           y = "Quantity flaking (higher = more quantity flaking)")+
-      theme_classic()+
-      theme(text = element_text(size=20))
-
-pred.mm_nback <- ggpredict(PC1_best_model, terms = c("Highest_nBack"))  # this gives overall predictions for the model
-plot(pred.mm_nback,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-      labs(x = "Highest n-back level", 
-           y = "Quantity flaking (higher = more quantity flaking)")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_beast<- ggpredict(PC1_best_model, terms = c("BEAST"))  # this gives overall predictions for the model
-plot(pred.mm_beast,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-      labs(x = "BEAST", 
-           y = "Quantity flaking (higher = more quantity flaking)")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_grip<- ggpredict(PC1_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
-plot(pred.mm_grip,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-      labs(x = "Grip strength", 
-           y = "Quantity flaking (higher = more quantity flaking)")+
-  theme_classic()+
-  theme(text = element_text(size=20))
+##### plot Skill factor 1 model (quantity flaking) ####
 
 pred.mm_cond_nback<- ggpredict(PC1_best_model, terms = c("Highest_nBack","Condition"))  # this gives overall predictions for the model
 levels(pred.mm_cond_nback$group) <- c("Untrained", "Trained")
 plot(pred.mm_cond_nback,facet=F, add.data = F,show.title =F, alpha=0.07) + 
   labs(x = "Highest n-back level", 
+       y = "Quantity flaking (higher = more quantity flaking)")+
+  theme_classic()+
+  theme(text = element_text(size=20))
+
+pred.mm_cond_grip<- ggpredict(PC1_best_model, terms = c("Condition","Grip_Strength"))  # this gives overall predictions for the model
+levels(pred.mm_cond_grip$x) <- c("Untrained","Trained")
+plot(pred.mm_cond_grip,facet=F, add.data = F,show.title =F, alpha=0.07) + 
+  labs(x = "Training condition", 
        y = "Quantity flaking (higher = more quantity flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))
@@ -848,9 +983,10 @@ plot(pred.mm_beast_condition,facet=F, add.data = F,show.title =F, alpha=0.07) +
   labs(x = "BEAST score", 
        y = "Quantity flaking (higher = more quantity flaking)")+
   theme_classic()+
-  theme(text = element_text(size=20))
+  theme(text = element_text(size=20))+
+  theme(legend.position = "none") 
 
-##### Skill PC 2 ####
+##### Skill factor 2 model (quality flaking) ####
 
 #generate complete model
 
@@ -873,101 +1009,210 @@ summary(PC2_multi@objects[[1]]) #best model
 
 # add mass to final model, but not in model selection
 PC2_best_model<-lm(skill_pca_dim2_quality_flaking ~
-                         1+Highest_nBack+
+                     1+Highest_nBack+
                      fitts_mtavg_ms+
                      Grip_Strength+
-                     fitts_mtavg_ms:BEAST+
-                     Grip_Strength:BEAST+
-                     Grip_Strength:fitts_mtavg_ms+
+                     BEAST:RPM+
+                     fitts_mtavg_ms:Highest_nBack+
+                     Condition:fitts_mtavg_ms+
                      Condition:Grip_Strength+
-                         core_start_mass,
+                     core_start_mass_ave,
                    data = model_data)
 
-plot(PC2_best_model)
+summary(PC2_best_model)
+
 ols_test_normality(PC2_best_model) #compare residuals against normal distribution
 bptest(PC2_best_model) #test for heteroskedasticity
-
-summary(PC2_best_model)
 
 PC2_best_model %>%
       report() %>%
       as.report_table(summary=TRUE)
 
-#### check for overfitting ####
-
-set.seed(3456)
-trainIndex <- createDataPartition(model_data$Condition, p = .7, 
-                                  list = FALSE, 
-                                  times = 1)
-
-PC2Train <- model_data[ trainIndex,]
-PC2Test  <- model_data[-trainIndex,]
-
-PC2_best_model_train<-lm(skill_pca_dim2_quality_flaking ~
-                           1+Highest_nBack+
-                           fitts_mtavg_ms+
-                           Grip_Strength+
-                           fitts_mtavg_ms:BEAST+
-                           Grip_Strength:BEAST+
-                           Grip_Strength:fitts_mtavg_ms+
-                           Condition:Grip_Strength+
-                           core_start_mass,
-                   data = PC2Train)
-
-summary(PC2_best_model_train)
-
-perfect.mod.test.pred <- predict(PC2_best_model_train, newdata=PC2Test)
-summary(PC2_best_model_train)
-
-perfect.mod.test.R2 <- cor(perfect.mod.test.pred, PC2Test$skill_pca_dim2_quality_flaking)^2
-perfect.mod.test.R2
-
-Overfitting.perfect.mod <- 0.75 - perfect.mod.test.R2
-Overfitting.perfect.mod #but should report the adjust
-
 #### plot PC 2 model ####
 
-pred.mm_fitts<- ggpredict(PC2_best_model, terms = c("fitts_mtavg_ms"))  # this gives overall predictions for the model
-plot(pred.mm_fitts,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-  labs(x = "Fitt's score", 
-       y = "Quality flaking (higher = increased quality flaking")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
 pred.mm_grip<- ggpredict(PC2_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
-plot(pred.mm_grip,facet=F, add.data = T,show.title =F, alpha=0.07) + 
+plot(pred.mm_grip,facet=F, add.data =T,show.title =F, alpha=0.07) + 
   labs(x = "Grip strength", 
-       y = "Quality flaking (higher = increased quality flaking")+
+       y = "Quality flaking (higher = increased quality flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))
 
-pred.mm_nback<- ggpredict(PC2_best_model, terms = c("Highest_nBack"))  # this gives overall predictions for the model
-plot(pred.mm_nback,facet=F, add.data = T,show.title =F, alpha=0.07) + 
-      labs(x = "Highest n-back", 
-           y = "Quality flaking (higher = increased quality flaking")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_mass<- ggpredict(PC2_best_model, terms = c("core_start_mass"))  # this gives overall predictions for the model
-plot(pred.mm_mass,facet=F, add.data =T,show.title =F, alpha=0.07) + 
-      labs(x = "Nodule starting mass", 
-           y = "Quality flaking (higher = increased quality flaking")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_grip_beast<- ggpredict(PC2_best_model, terms = c("Grip_Strength","BEAST"))  # this gives overall predictions for the model
-plot(pred.mm_grip_beast,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+pred.mm_beast_rpm<- ggpredict(PC2_best_model, terms = c("RPM","BEAST"))  # this gives overall predictions for the model
+ggplot(model_data, aes(x=RPM, y=skill_pca_dim2_quality_flaking, color=BEAST))+
+  geom_point(size=4)+ 
   labs(x = "Grip strength", 
-       y = "Quality flaking (higher = increased quality flaking")+
+       y = "Quality flaking (higher = increased quality flaking)")+
+theme_classic()+
+  theme(text = element_text(size=20))
+
+pred.mm_nback_fitts<- ggpredict(PC2_best_model, terms = c("Highest_nBack","fitts_mtavg_ms"))  # this gives overall predictions for the model
+ggplot(model_data, aes(x=Highest_nBack, y=skill_pca_dim2_quality_flaking, color=fitts_mtavg_ms))+
+  geom_point(size=4)+ 
+  labs(x = "Highest n-back level", 
+       y = "Quality flaking (higher = increased quality flaking)",
+       color="Fitts score")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_viridis_c()
+
+pred.mm_fitts_condition<- ggpredict(PC2_best_model, terms = c("fitts_mtavg_ms","Condition"))  # this gives overall predictions for the model
+plot(pred.mm_fitts_condition,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+  labs(x = "Fitts score", 
+       y = "Quality flaking (higher = increased quality flaking)")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
+  labs(color = "")+
+  scale_x_reverse()
+
+# plots to show why interaction effects are challenging to interpret
+ggplot(model_data,aes(x=RPM,y=skill_pca_dim2_quality_flaking, color=BEAST))+
+  geom_point(size=3)+
+labs(x = "RPM", 
+     y = "Quality flaking (higher = increased quality flaking)")+
+  theme_classic()+
+  theme(text = element_text(size=20))+ 
+  labs(color = "BEAST score")
+
+#### Quantity flaking model 3 ####
+
+quantity_complete<- lm(removed_mass_sum ~  Condition + Highest_nBack +
+                    RPM + BEAST + 
+                    fitts_mtavg_ms +
+                    Grip_Strength,
+                  data = model_data)
+
+#the multimodal selection
+
+quantity_multi <- glmulti(quantity_complete, # use the model with built as a starting point
+                     level = 2, #1=just look at main effects, 2=look at main and interraction effects
+                     method='g',
+                     crit="aic",minsize = 0, maxsize = 7, minK = 0, maxK = -1) 
+
+print(quantity_multi) #all models
+
+summary(quantity_multi@objects[[2]]) #best model
+
+# add mass to final model, but not in model selection
+quantity_best_model<-lm(removed_mass_sum ~
+                     Condition + 
+                     Highest_nBack +
+                     BEAST +
+                     Grip_Strength + 
+                     Condition:Highest_nBack+
+                     Condition:BEAST,
+                   data = model_data)
+
+ols_test_normality(quantity_best_model) #compare residuals against normal distribution
+bptest(quantity_best_model) #test for heteroskedasticity
+
+summary(quantity_best_model)
+
+quantity_best_model %>%
+  report() %>%
+  as.report_table(summary=TRUE)
+
+#### plot Quantity flaking model 3 ####
+
+pred.mm_train_nback<- ggpredict(quantity_best_model, terms = c("Highest_nBack","Condition"))  # this gives overall predictions for the model
+plot(pred.mm_train_nback,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+  labs(x = "Highest n-back level", 
+       y = "Total mass removed from cores")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
+  labs(color = "")
+
+pred.mm_train_beast<- ggpredict(quantity_best_model, terms = c("BEAST","Condition"))  # this gives overall predictions for the model
+plot(pred.mm_train_beast,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+  labs(x = "BEAST score", 
+       y = "Total mass removed from cores")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
+  labs(color = "")
+
+pred.mm_grip<- ggpredict(quantity_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
+autoplot(pred.mm_grip) +
+    # Expected + CI
+    geom_CI_ribbon() +
+    geom_expected_line()+ 
+  layer_fit_data(size=3, color = "black")+ 
+  labs(x = "Grip strength", 
+       y = "Total mass removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))
 
-pred.mm_grip_cond<- ggpredict(PC2_best_model, terms = c("Condition","Grip_Strength"))  # this gives overall predictions for the model
-levels(pred.mm_grip_cond$x) <- c("Untrained", "Trained")
-plot(pred.mm_grip_cond,facet=F, add.data =F,show.title =F, alpha=0.07) + 
-  labs(x = "Training condition", 
-       y = "Quality flaking (higher = increased quality flaking")+
+pred.mm_cond<- ggpredict(quantity_best_model, terms = c("Condition"))  # this gives overall predictions for the model
+autoplot(pred.mm_cond) +
+  # Expected + CI
+  geom_CI_ribbon() +
+  geom_expected_line()+ 
+  layer_fit_data(size=3, color = "black")+ 
+  labs(x = "Grip strength", 
+       y = "Total mass removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))
 
+#### Plot comparisons between quantity (factor1), quality (factor2), and productivity ####
+
+#How does quality relate to quantity? (repeate of section above, move code when finalized)
+
+ggplot(model_data, aes(y=skill_pca_dim2_quality_flaking, x=skill_pca_dim1_quantity_flaking, color=Condition))+
+  geom_point(size=4)+
+  geom_smooth(method="lm", alpha=0.2)+
+  xlab("Quantity flaking (higher = more quantity flaking)") +
+  ylab("Quality flaking (higher = more quality flaking)")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))
+
+summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking*Condition, data=model_data))
+summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking, data=subset(model_data, Condition=="0")))
+summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking, data=subset(model_data, Condition=="1")))
+
+#How does quantity relate to productivity?
+
+ggplot(model_data, aes(x=skill_pca_dim1_quantity_flaking, y=removed_mass_sum, color=Condition))+
+  geom_point(size=4)+
+  geom_smooth(method="lm", alpha=0.2)+
+  xlab("Quantity flaking (higher = more quantity flaking)") +
+  ylab("Total mass (g) removed from cores")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  theme(legend.position = "none")
+
+summary(lm(skill_pca_dim1_quantity_flaking~removed_mass_sum, data=model_data))
+summary(lm(skill_pca_dim1_quantity_flaking~removed_mass_sum, data=subset(model_data, Condition=="0")))
+summary(lm(skill_pca_dim1_quantity_flaking~removed_mass_sum, data=subset(model_data, Condition=="1")))
+
+#How does quality relate to productivity?
+
+ggplot(model_data, aes(x=skill_pca_dim2_quality_flaking, y=removed_mass_sum, color=Condition))+
+  geom_point(size=4)+
+  geom_smooth(method="lm", alpha=0.2)+
+  xlab("Quality flaking (higher = more quality flaking)") +
+  ylab("Total mass (g) removed from cores")+
+  theme_classic()+
+  theme(text = element_text(size=20))+
+  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  theme(legend.position = "none")
+
+summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=model_data))
+summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="0")))
+summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="1")))
+
+####Dietz's Qu's####
+
+subset_model_data<-model_data %>%
+  subset(subject %in% c(7,13,15,16,23,24))
+
+model_data %>% 
+  ggplot(aes(y=removed_mass_sum,x=skill_pca_dim2_quality_flaking)) + 
+  geom_point(alpha=0.3) +
+  geom_point(data=subset_model_data, 
+             aes(y=removed_mass_sum,x=skill_pca_dim2_quality_flaking), 
+             color='red',
+             size=3)
 

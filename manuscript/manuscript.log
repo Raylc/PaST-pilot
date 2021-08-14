@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  14 AUG 2021 10:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  14 AUG 2021 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -618,11 +618,11 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 732.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 732.
  ) 
 Here is how much of TeX's memory you used:
- 14076 strings out of 492162
- 201960 string characters out of 6129062
- 338763 words of memory out of 5000000
+ 14073 strings out of 492162
+ 201933 string characters out of 6129062
+ 339763 words of memory out of 5000000
  17671 multiletter control sequences out of 15000+600000
- 152933 words of font info for 257 fonts, out of 8000000 for 9000
+ 152467 words of font info for 255 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,11n,42p,2928b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{ref-Bartoux144} has been referenced but does not 
@@ -639,7 +639,7 @@ ic/lm/lmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:
 -dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
 adobe/utopia/putb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia/pu
 tr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on manuscript.pdf (41 pages, 263673 bytes).
+Output written on manuscript.pdf (41 pages, 264210 bytes).
 PDF statistics:
  1050 PDF objects out of 1200 (max. 8388607)
  988 compressed objects within 10 object streams
