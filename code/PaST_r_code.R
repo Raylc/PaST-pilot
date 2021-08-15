@@ -13,7 +13,7 @@ detachAllPackages <- function() {
 
 detachAllPackages()
 Sys.setenv(JAVA_HOME="")
-Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_301')
+Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_301\\bin\\server')
 library(tidyverse)
 library(car)
 library(reshape2)
