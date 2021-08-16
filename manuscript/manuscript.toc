@@ -1,0 +1,34 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Individual Differences}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Teaching, Language, and Tool Making}{7}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Raw materials and knapping skill}{9}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Materials and Methods}{10}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Participants}{10}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Study Visit}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Individual Difference Measures}{11}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Stone Tool Making}{13}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Raw Materials}{14}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Experimental Conditions}{15}{subsubsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.5}Lithic Analysis}{16}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Statistical Analyses}{17}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Results}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Principal Component analyses}{18}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Detached Piece size and shape}{18}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Lithic flaking performance measures}{19}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Relationships between Performance Measures}{19}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Do trained, untrained, and expert knappers perform differently?}{20}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Does performance change over time?}{21}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Do individual differences in motor skill and psychometric measures predict flaking performance?}{22}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Model 1: Individual differences and quantity flaking}{23}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Model 2: Individual differences and quality flaking}{24}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Model 3: Individual differences and quality flaking}{25}{subsubsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.6}Behavioral observations}{25}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Discussion}{26}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Variance Reduction}{26}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Knapping Behaviors}{27}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Learning Strategies}{28}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Limitations and Prospects}{30}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Conclusions}{31}{section.5}%
+\contentsline {section}{\numberline {6}Acknowledgments}{31}{section.6}%
+\contentsline {section}{\numberline {7}Figures}{31}{section.7}%
+\contentsline {section}{References}{31}{section*.3}%
