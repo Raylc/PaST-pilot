@@ -1,0 +1,10 @@
+﻿Variable,Factor 1,Factor 2
+Variance %,28.7,27
+Interpretation,Flaking quantity,Flaking quality
+,(higher values = greater quantity detached),"(higher values = larger, more “flake-shaped” pieces)"
+Mass of DPs > 40mm and 5g : total mass of all DPs,0.61,-0.48
+Number of DPs > 40mm and 5g,0.84,0.4
+Core delta mass,0.78,-0.23
+Shape PC factor 1 (size),0.11,0.63
+Shape PC factor 2 (thickness and elongation),0.01,-0.71
+Shape PC factor 3 (thinness and base breadth),0.13,0.55

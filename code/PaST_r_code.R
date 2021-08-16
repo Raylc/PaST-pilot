@@ -10,15 +10,15 @@ detachAllPackages <- function() {
       if (length(package.list)>0)  for (package in package.list) detach(package, character.only=TRUE)
       
 }
-
 detachAllPackages()
-Sys.setenv(JAVA_HOME="")
-Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_301\\bin\\server')
-library(tidyverse)
 library(car)
+library(ggplot2)
 library(reshape2)
+library(tidyr)
 library(plyr)
+library(dplyr)
 library(DescTools)
+library(stringr)
 library(factoextra)
 library(psych) 
 library(Hmisc)
@@ -29,7 +29,6 @@ library(sjPlot)
 library(rcompanion)
 library(caret)
 library(permuco)
-
 
 #### Import datasets ####
 
@@ -229,13 +228,6 @@ subject_core_flakes <- pca_flakes[, 1:4]
 
 pca_flakes_complete<-prcomp(pca_flakes[,c(15,24,26:34)], scale. = T)
 
-# Biplot of variables and factors
-
-fviz_pca_var(pca_flakes_complete,
-             col.ind = "cos2", # Color by the quality of representation
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE)
-
 # Eigenvalues
 
 eig.val_flakes <- get_eigenvalue(pca_flakes_complete)
@@ -263,30 +255,6 @@ complete_past_data_shape_pca<-join(complete_past_data_plusflakes,
                                    joined_to_identifiers,
                                 by=c("subject","Condition","core_number","flake_number")) %>%
   mutate(flake_pca_dim1=flake_pca_dim1*-1) #change sign so larger values = larger flakes
-
-# plot subjects' data against absolute size measure to track allometry in variance. 
-
-ggplot(complete_past_data_shape_pca, aes(y = log(flake_mass), x = flake_pca_dim2)) +
-      geom_point(alpha = 0.5) +
-      #geom_smooth(method='loess') +
-      theme_classic() +
-      ylab("Flake mass (log)") +
-      xlab("Flake shape Factor 2 (thickness relative to width)")+
-  theme(text = element_text(size=20))
-
-ggplot(complete_past_data_shape_pca, aes(y = log(flake_mass), x = flake_pca_dim3)) +
-      geom_point(alpha = 0.5) +
-      #geom_smooth(method='lm') +
-      theme_classic()+
-      ylab("Flake mass (log)") +
-      xlab("Flake shape Factor 3 (basal relative to tip width, thickness)")+
-  theme(text = element_text(size=18))
-
-ggplot(complete_past_data_shape_pca, aes(x = Condition, y = flake_pca_dim3)) +
-  geom_boxplot()
-
-ggplot(complete_past_data_shape_pca, aes(x = Condition, y = flake_pca_dim2)) +
-  geom_boxplot()
 
 ## apply to Dietz's flake data
 
@@ -369,58 +337,6 @@ complete_past_data_shape_pca_expert_summary<- complete_past_data_shape_pca_exper
 
 # Calculate PCA
 
-#### check possible errors in s15-clear that core 113 is an extreme outlier ####
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=mass_flakes_flaked_mass_bycore))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=mass_flakes_flaked_mass_bycore), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=total_flakes_above40mm_5g_bycore))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=total_flakes_above40mm_5g_bycore), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=delta_mass))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=delta_mass), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=flake_pca_dim1_bycore))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=flake_pca_dim1_bycore), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=flake_pca_dim2_bycore))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=flake_pca_dim2_bycore), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=flake_pca_dim3_bycore))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=flake_pca_dim3_bycore), 
-             color='red',
-             size=3)
-
-ggplot(complete_past_data_shape_pca_expert_summary, aes(x=Condition, y=Total_Cores_Used))+
-  geom_boxplot()+
-  geom_point(data=subset(complete_past_data_shape_pca_expert_summary, subject==15), 
-             aes(x=Condition,y=Total_Cores_Used), 
-             color='red',
-             size=3)
-
-
 ### Create PCA dataset ####
 
 subject_flake_core_skill_pca <- complete_past_data_shape_pca_expert_summary %>% subset(!subject=="demo") %>% 
@@ -446,15 +362,6 @@ pca_skill_metrics<-prcomp(na.omit(pca_skill_data_bycore), scale. = T)
 
 # determine factorability
 bartlett.test(pca_skill_data_bycore)
-
-# Graph of variables
-fviz_pca_var(pca_skill_metrics,
-             col.ind = "cos2", # Color by the quality of representation
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE)
-
-#screeplot
-screeplot(pca_skill_metrics,type='line')
 
 # Eigenvalues
 eig.val <- get_eigenvalue(pca_skill_metrics)
@@ -573,29 +480,7 @@ var.test(mass_flakes_flaked_mass_bycore ~ Condition, complete_past_data_shape_sk
 
 var.test(delta_mass ~ Condition, complete_past_data_shape_skill_pca_combined_bycore, 
          alternative = "two.sided")
-ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
-       aes(x=Condition, y=delta_mass, color=Condition)) +
-  geom_boxplot(outlier.size=0)+
-  geom_point(position = position_jitterdodge()) +
-  theme_classic() +
-  theme(legend.position = "none")+
-  xlab("") +
-  ylab("Core delta mass")+
-  theme(text = element_text(size=20))
 
-var.test(Total_Cores_Used ~ Condition, total_mass_data, 
-         alternative = "two.sided")
-ggplot(filter(total_mass_data,!subject=="demo"), 
-       aes(x=Condition, y=Total_Cores_Used, color=Condition)) +
-  geom_boxplot(outlier.size=0)+
-  geom_point(size=3,position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
-  scale_x_discrete(labels = c('Untrained','Trained'))+
-  theme_classic() +
-  theme(legend.position = "none")+
-  xlab("") +
-  ylab("Total cores used")+
-  theme(text = element_text(size=20))
 
 #create total mass variable for variance comparisons
 total_mass_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
@@ -623,31 +508,22 @@ leveneTest(skill_pca_dim1_quantity_flaking ~ Condition, data = subject_skillPC_d
 aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
         data = subject_skillPC_data)
 
-ggplot(filter(subject_skillPC_data,!subject=="demo"), 
-       aes(x=Condition, y=skill_pca_dim2_quality_flaking)) +
-  geom_boxplot()+
-  geom_jitter()
-
 leveneTest(skill_pca_dim2_quality_flaking ~ Condition, data = filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo" ))
 aovperm(skill_pca_dim2_quality_flaking ~ Condition,
         data = subject_skillPC_data)
 
 ## Flake shape
-ggplot(complete_past_data_shape_skill_pca_combined_byflake, aes(x=condition_threeway, y=flake_pca_dim1))+
-  geom_boxplot()
 
 leveneTest(flake_pca_dim1 ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_byflake) #check assumption of equal variance
 aov_1<-aov(flake_pca_dim1~condition_threeway, data=complete_past_data_shape_skill_pca_combined_byflake)
 aov_1 %>% report() %>% as.report_table(summary=TRUE)
 
-ggplot(complete_past_data_shape_skill_pca_combined_byflake, aes(x=condition_threeway, y=flake_pca_dim2))+
-  geom_boxplot()
+
 leveneTest(flake_pca_dim2 ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_byflake)
 aov_2<-aov(flake_pca_dim2~condition_threeway, data=complete_past_data_shape_skill_pca_combined_byflake)
 aov_2 %>% report() %>% as.report_table(summary=TRUE)
 
-ggplot(complete_past_data_shape_skill_pca_combined_byflake, aes(x=condition_threeway, y=flake_pca_dim3))+
-  geom_boxplot()
+
 leveneTest(flake_pca_dim3 ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_byflake)
 aovperm(flake_pca_dim3 ~ condition_threeway, #implement permutation tests for un-equal variances
         data = complete_past_data_shape_skill_pca_combined_byflake)
@@ -698,21 +574,12 @@ epsilonSquared(x = complete_past_data_shape_skill_pca_combined_bycore$delta_mass
                g = complete_past_data_shape_skill_pca_combined_bycore$condition_threeway)
 
 # mass flakes
-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=mass_flakes_flaked_mass_bycore)) +
-      geom_boxplot() +
-      geom_jitter()
+
 leveneTest(mass_flakes_flaked_mass_bycore ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_bycore)
 aov_3<-aov(mass_flakes_flaked_mass_bycore~condition_threeway, data=complete_past_data_shape_skill_pca_combined_bycore)
 aov_3 %>% report() %>% as.report_table(summary=TRUE)
 
 # Core final mass comparisons
-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=log(core_final_mass))) +
-      geom_boxplot()+
-  geom_jitter()+
-  theme_classic() +
-  xlab("") +
-  ylab("Core final mass (g)")+
-  theme(text = element_text(size=20))
 
 leveneTest(core_final_mass ~ condition_threeway, data = filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"))
 aovperm(core_final_mass ~ condition_threeway,
@@ -733,14 +600,6 @@ summary(aov(Total_Cores_Used ~ Condition,
         data = total_cores_knapped_data))
 
 # Total removed mass knapped
-ggplot(subset(model_data, !is.na(Condition)), aes(x=Condition, y=removed_mass_sum)) +
-  geom_boxplot()+
-  geom_jitter()+
-  theme_classic() +
-  xlab("") +
-  ylab("Total mass removed from cores")+
-  theme(text = element_text(size=20))+ 
-  scale_x_discrete(labels = c('Untrained','Trained'))
 
 leveneTest(removed_mass_sum ~ Condition, data = filter(total_mass_data,!subject=="demo"))
 summary(aov(removed_mass_sum ~ Condition,
@@ -773,49 +632,12 @@ learning_rate_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
 
 start_data<-subset(learning_rate_data, core_order_stage=="0_20")
 
-ggplot(start_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
-  geom_boxplot(outlier.size = 0)+
-  geom_jitter()
-
-ggplot(start_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
-  geom_boxplot(outlier.size = 0)+
-  geom_jitter()
-
 middle_data<-subset(learning_rate_data, core_order_stage=="40_60")
-
-ggplot(middle_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
-  geom_boxplot()+
-  geom_jitter()
-
-ggplot(middle_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
-  geom_boxplot()+
-  geom_jitter()
 
 end_data<-subset(learning_rate_data, core_order_stage=="80-100")
 
-ggplot(end_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking))+
-  geom_boxplot()+
-  geom_jitter()
-
-ggplot(end_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking))+
-  geom_boxplot()+
-  geom_jitter()
 
 start_middle_end_data<-subset(learning_rate_data, core_order_stage %in% c("0_20", "40_60", "80-100"))
-
-ggplot(start_middle_end_data, aes(x=Condition,y=skill_pca_dim1_quantity_flaking, color=Condition))+
-  geom_boxplot(outlier.size = 0, outlier.colour = "white")+
-  geom_jitter()+
-  facet_wrap(~core_order_stage)
-summary(aov(skill_pca_dim1_quantity_flaking ~ Condition*core_order_stage,
-        data = start_middle_end_data))
-
-ggplot(start_middle_end_data, aes(x=Condition,y=skill_pca_dim2_quality_flaking, color=Condition))+
-  geom_boxplot(outlier.size = 0, outlier.colour = "white")+
-  geom_jitter()+
-  facet_wrap(~core_order_stage)
-summary(aov(skill_pca_dim2_quality_flaking ~ Condition*core_order_stage,
-            data = start_middle_end_data))
 
 # and are their variances different at different learning stages?
 aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
@@ -1021,29 +843,14 @@ PC2_best_model<-lm(skill_pca_dim2_quality_flaking ~
 
 summary(PC2_best_model)
 
-ols_test_normality(PC2_best_model) #compare residuals against normal distribution
-bptest(PC2_best_model) #test for heteroskedasticity
+olsrr::ols_test_normality(PC2_best_model) #compare residuals against normal distribution
+lmtest::bptest(PC2_best_model) #test for heteroskedasticity
 
 PC2_best_model %>%
       report() %>%
       as.report_table(summary=TRUE)
 
 #### plot PC 2 model ####
-
-pred.mm_grip<- ggpredict(PC2_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
-plot(pred.mm_grip,facet=F, add.data =T,show.title =F, alpha=0.07) + 
-  labs(x = "Grip strength", 
-       y = "Quality flaking (higher = increased quality flaking)")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_beast_rpm<- ggpredict(PC2_best_model, terms = c("RPM","BEAST"))  # this gives overall predictions for the model
-ggplot(model_data, aes(x=RPM, y=skill_pca_dim2_quality_flaking, color=BEAST))+
-  geom_point(size=4)+ 
-  labs(x = "Grip strength", 
-       y = "Quality flaking (higher = increased quality flaking)")+
-theme_classic()+
-  theme(text = element_text(size=20))
 
 pred.mm_nback_fitts<- ggpredict(PC2_best_model, terms = c("Highest_nBack","fitts_mtavg_ms"))  # this gives overall predictions for the model
 ggplot(model_data, aes(x=Highest_nBack, y=skill_pca_dim2_quality_flaking, color=fitts_mtavg_ms))+
@@ -1055,15 +862,6 @@ ggplot(model_data, aes(x=Highest_nBack, y=skill_pca_dim2_quality_flaking, color=
   theme(text = element_text(size=20))+
   scale_color_viridis_c()
 
-pred.mm_fitts_condition<- ggpredict(PC2_best_model, terms = c("fitts_mtavg_ms","Condition"))  # this gives overall predictions for the model
-plot(pred.mm_fitts_condition,facet=F, add.data =F,show.title =F, alpha=0.07) + 
-  labs(x = "Fitts score", 
-       y = "Quality flaking (higher = increased quality flaking)")+
-  theme_classic()+
-  theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
-  labs(color = "")+
-  scale_x_reverse()
 
 # plots to show why interaction effects are challenging to interpret
 ggplot(model_data,aes(x=RPM,y=skill_pca_dim2_quality_flaking, color=BEAST))+
@@ -1103,8 +901,8 @@ quantity_best_model<-lm(removed_mass_sum ~
                      Condition:BEAST,
                    data = model_data)
 
-ols_test_normality(quantity_best_model) #compare residuals against normal distribution
-bptest(quantity_best_model) #test for heteroskedasticity
+olsrr::ols_test_normality(quantity_best_model) #compare residuals against normal distribution
+lmtest::bptest(quantity_best_model) #test for heteroskedasticity
 
 summary(quantity_best_model)
 
@@ -1131,28 +929,6 @@ plot(pred.mm_train_beast,facet=F, add.data =F,show.title =F, alpha=0.07) +
   theme(text = element_text(size=20))+
   scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
   labs(color = "")
-
-pred.mm_grip<- ggpredict(quantity_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
-autoplot(pred.mm_grip) +
-    # Expected + CI
-    geom_CI_ribbon() +
-    geom_expected_line()+ 
-  layer_fit_data(size=3, color = "black")+ 
-  labs(x = "Grip strength", 
-       y = "Total mass removed from cores")+
-  theme_classic()+
-  theme(text = element_text(size=20))
-
-pred.mm_cond<- ggpredict(quantity_best_model, terms = c("Condition"))  # this gives overall predictions for the model
-autoplot(pred.mm_cond) +
-  # Expected + CI
-  geom_CI_ribbon() +
-  geom_expected_line()+ 
-  layer_fit_data(size=3, color = "black")+ 
-  labs(x = "Grip strength", 
-       y = "Total mass removed from cores")+
-  theme_classic()+
-  theme(text = element_text(size=20))
 
 #### Plot comparisons between quantity (factor1), quality (factor2), and productivity ####
 
@@ -1202,17 +978,4 @@ ggplot(model_data, aes(x=skill_pca_dim2_quality_flaking, y=removed_mass_sum, col
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=model_data))
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="0")))
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="1")))
-
-####Dietz's Qu's####
-
-subset_model_data<-model_data %>%
-  subset(subject %in% c(7,13,15,16,23,24))
-
-model_data %>% 
-  ggplot(aes(y=removed_mass_sum,x=skill_pca_dim2_quality_flaking)) + 
-  geom_point(alpha=0.3) +
-  geom_point(data=subset_model_data, 
-             aes(y=removed_mass_sum,x=skill_pca_dim2_quality_flaking), 
-             color='red',
-             size=3)
 

@@ -17,6 +17,7 @@ header-includes:
    - \floatplacement{figure}{H}
    - \usepackage{caption}
    - \captionsetup[figure]{font=scriptsize}
+   - \captionsetup[table]{font=scriptsize}
 linestretch: 1.5
 link-citations: yes
 linkcolor: blue
@@ -112,7 +113,7 @@ Each participant was provided with 9 cores for use over the 2-hour experiment. T
 knitr::include_graphics(here::here("figure/Figure2.jpg"))
 ```
 
-Sixty pounds of 3-to-5 inch basalt "Mexican Beach Pebbles" were purchased from a landscaping supply company for use as hammerstones in the experiment. Of these, 90 were selected as suitable for use. These weighed between 213g-1360g (mean = 425) and varied in elongation (L/W = 1.01 to 2.65) and relative thickness (LxW/T = 90.48 to 283.67). Forty-five stones were placed in the middle of the knapping area (Figure 2) for participants to freely choose from during the experiment. Broken hammerstones were replaced from the reserve to maintain a consistent number and range of choices. Each hammerstone was numbered and participants' choices were recorded along with the number of the core(s) being worked on with a particular hammerstone.
+Sixty pounds of 3-to-5 inch basalt "Mexican Beach Pebbles" were purchased from a landscaping supply company for use as hammerstones in the experiment. Of these, 90 were selected as suitable for use. These weighed between 213g-1360g (mean = 425) and varied in elongation (L/W = 1.01 to 2.65) and relative thickness (L$\times$W/T = 90.48 to 283.67). Forty-five stones were placed in the middle of the knapping area (**Figure** \@ref(fig:fig3)) for participants to freely choose from during the experiment. Broken hammerstones were replaced from the reserve to maintain a consistent number and range of choices. Each hammerstone was numbered and participants' choices were recorded along with the number of the core(s) being worked on with a particular hammerstone.
 
 ### Experimental Conditions
 
@@ -132,7 +133,21 @@ In the Taught condition, there were no restrictions on participant interaction a
 
 ## Lithic Analysis
 
-All finished cores were weighed and measured (L, W, T). Delta weight was calculated as (Start weight-End weight)/Start weight. All detached pieces (DPs) were collected and weighed. We did not sort DPs into types (e.g., whole flakes, fragments) as this would have greatly increased processing time and it is not clear that such distinctions add relevant information regarding utility/desirability beyond that supplied by metrics [@stout2019]. All DPs larger than 40mm in maximum dimension were photographed and measured. It is conventional in Early Stone Age lithic analysis to employ a 20 mm cut-off. We selected a higher threshold for both pragmatic (analysis time) and theoretical reasons. Flake use experiments have shown that flakes weighing less than 5--10 g or with a surface area below 7--10 cm2 [@prasciunas2007] or with a maximum dimension \<50-60 mm [@key2014] become markedly inefficient for basic cutting tasks. Similarly, data from Oldowan replication experiments [@stout2019] show that the utility index (flake cutting edge/flake mass1/3) \* (1 - exp[-0.31 \* (flake maximum dimension -- 1.81)]) developed by Morgan et al. (2015) falls off rapidly below 40mm maximum dimension ( Mean Utility \< 40mm = 0.508; \>=40mm = 0.946; t= 11.99, df = 707, p \< 0.000). By including weight in our cut-off criteria we also avoid skewing the flake shape distribution by selectively retaining long, thin pieces (i.e., MD \> 40, weight \< 5g) while discarding rounder pieces of similar (or greater) weight and area.
+**Table** \@ref(tab:tab1) lists details for the study’s various lithic attributes. All finished cores were weighed and measured (L, W, T). Delta weight was calculated as (Start weight-End weight)/Start weight. All detached pieces (DPs) were collected and weighed. We did not sort DPs into types (e.g., whole flakes, fragments) as this would have greatly increased processing time and it is not clear that such distinctions add relevant information regarding utility/desirability beyond that supplied by metrics [@stout2019]. All DPs larger than 40mm in maximum dimension were photographed and measured. It is conventional in Early Stone Age lithic analysis to employ a 20 mm cut-off. We selected a higher threshold for both pragmatic (analysis time) and theoretical reasons. Flake use experiments have shown that flakes weighing less than 5--10 g or with a surface area below 7--10 cm2 [@prasciunas2007] or with a maximum dimension \<50-60 mm [@key2014] become markedly inefficient for basic cutting tasks. Similarly, data from Oldowan replication experiments [@stout2019] show that the utility index (flake cutting edge/flake mass1/3) \* (1 - exp[-0.31 \* (flake maximum dimension -- 1.81)]) developed by Morgan et al. (2015) falls off rapidly below 40mm maximum dimension ( Mean Utility \< 40mm = 0.508; \>=40mm = 0.946; t= 11.99, df = 707, p \< 0.000). By including weight in our cut-off criteria we also avoid skewing the flake shape distribution by selectively retaining long, thin pieces (i.e., MD \> 40, weight \< 5g) while discarding rounder pieces of similar (or greater) weight and area.
+```{r tab1, echo=FALSE, message=FALSE}
+library(tidyverse)
+df1 <- data.frame("Variable" = c("Delta mass", "Mass of large detached pieces / total debitage mass", "Length", "Width", "Thickness"), 
+                 "Variable class" = c("Ratio", "Ratio", "Linear measurement", "Linear measurement", "Linear measurement"), 
+                 "Definition" = c("Final core mass as a percentage of original nodule mass. Higher values show more completely flaked nodules.", "Combined mass of all detached pieces >40mm in maximum dimension and 5g in mass divided by the mass of all material detached from a specific core. Higher values show cores with more detached pieces per knapped material.", "Measurement along each core and flake's longest axis in mm.", "Measurement taken at 10% increments along a detached piece's longest axis starting at the detached piece's tip (in mm). Same measurement taken orthogonal to a core's length.", "Measurement taken at the maximum point in a detached piece's profile and orthogonal to width on the cores."),
+                "Recording method" = c("Digital scale", "Calipers, counts, digital scale", "2D photogrammetry", "2D photogrammetry", "Calipers") ) 
+
+kableExtra::kbl(df1, booktabs = T, caption = "Overview of lithic variables and recording methods used in the study.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7) %>%
+  kableExtra::column_spec(1, width = "10em") %>%
+  kableExtra::column_spec(3, width = "20em")%>%
+  kableExtra::column_spec(4, width = "10em")
+
+```
 
 For measurement, DP length was defined as the longest axis and width as the maximum dimension orthogonal to length. Thickness was defined as the maximum dimension orthogonal to the plane formed by L and W and was measured using calipers. L, W, and plan-view area measurements were taken from photographs captured using a Canon Rebel T3i fitted with a 60 mm macro lens and attached to a photographic stand with adjustable upper and lower light fittings. The camera was positioned directly above the flakes and kept at a constant height. DPs were positioned irrespective of any technological features so that the longest axis was vertical, and the wider end was placed toward the bottom of the photograph.
 
@@ -156,13 +171,27 @@ The following two sections outline factor analyses designed to summarize our mai
 
 To better understand the relationship between DP shape and training/individual variation, we entered our nine flake linear plan measurements along with maximum flake length and thickness into a principal component analysis (PCA) from which summary coordinates were extracted. Bartlett's Test of Sphericity was significant ($\chi ^2$ (10) =4480, p \< .01) indicating that the set of variables are adequately related for factor analysis.
 
-The analysis yielded three factors explaining a total of 90% of the variance for the entire 11 measurement variable set **(Table**). Factor 1 tracks flake size with higher scores indicating larger flakes since all 11 measures load positively on this factor. Factor 2's loadings track the increasing relationship between thickness, length, and flake width. As factor 2 scores increase, flakes get thicker, longer, and narrow, resembling irregular splinters. Factor 3 tracks the relationship between flake proximal and distal width relative to thickness. As factor 3 scores go up, flakes get thinner and narrower at the distal ends and wider at the base. Factor 3 therefore tracks flakes with a typical shape having a thin cross-section, wider base, and narrower tip. We used these three flake shape coordinates to approximate DP size and shape in the project's flake performance factor analysis.
+The analysis yielded three factors explaining a total of 90% of the variance for the entire 11 measurement variable set (**Table** \@ref(tab:tab2)). Factor 1 tracks flake size with higher scores indicating larger flakes since all 11 measures load positively on this factor. Factor 2's loadings track the increasing relationship between thickness, length, and flake width. As factor 2 scores increase, flakes get thicker, longer, and narrow, resembling irregular splinters. Factor 3 tracks the relationship between flake proximal and distal width relative to thickness. As factor 3 scores go up, flakes get thinner and narrower at the distal ends and wider at the base. Factor 3 therefore tracks flakes with a typical shape having a thin cross-section, wider base, and narrower tip. We used these three flake shape coordinates to approximate DP size and shape in the project's flake performance factor analysis.
+```{r tab2, echo=FALSE, message=FALSE}
+library(tidyverse)
+df2<-read.csv(here::here("data/tables/table2.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df2, booktabs = T, caption = "Lithic size/shape PCA factor loadings.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 ### Lithic flaking performance measures
 
 To better understand the relationship between our various lithic performance measurements and to reduce data dimensionality, we conducted a second principal component analysis examining the study's six lithic performance measures (count of large pieces [\>40mm and 5g], mass of large pieces relative to total detached mass, core delta mass, and the three flake shape factors). All of these measures were summarized for each core and unique factor scores were calculated from these core-specific measures. Bartlett's Test of Sphericity was significant ($\chi ^2$ (6) =3185, p \< .01) indicating that the set of variables are at least adequately related for factor analysis.
 
-The analysis yielded two factors explaining a total of 56% of the variance for the entire set of variables (Table). Factor 1 (hereafter "Quantity") explains 28.7% of the variance and tracks flaking quantity due to high positive loadings on large DP count and mass ratio and on core delta mass. Performance factor 2 (hereafter "Quality") covers 27% of the sample variance and measures flaking quality as reflected in high positive loadings on Shape Factors 1 (size) and 3 (thin, "flake-like" shape) and a negative loading on Shape Factor 2 ("splinter-like" thickness and elongation). High scores on Quality thus reflect production of larger, relatively thinner, and more typically flake-shaped vs. splinter-shaped DPs.
+The analysis yielded two factors explaining a total of 56% of the variance for the entire set of variables (**Table** \@ref(tab:tab3)). Factor 1 (hereafter "Quantity") explains 28.7% of the variance and tracks flaking quantity due to high positive loadings on large DP count and mass ratio and on core delta mass. Performance factor 2 (hereafter "Quality") covers 27% of the sample variance and measures flaking quality as reflected in high positive loadings on Shape Factors 1 (size) and 3 (thin, "flake-like" shape) and a negative loading on Shape Factor 2 ("splinter-like" thickness and elongation). High scores on Quality thus reflect production of larger, relatively thinner, and more typically flake-shaped vs. splinter-shaped DPs.
+```{r tab3, echo=FALSE, message=FALSE}
+library(tidyverse)
+df3<-read.csv(here::here("data/tables/table3.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df3, booktabs = T, caption = "Overview of principal components results on the six flake performance measures. DP = detached piece.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 These two factors address flaking performance at the level of individual cores, however we were also interested in the overall productivity/rate of work of each participant over the entire two hours. For example, looking at a knappers average Quality and Quantity factor scores would not differentiate between a participant who spent the entire time exhaustively reducing one core vs. another participant who did the same to all nine of their allotted cores in the same time. To capture this aspect of variation we calculated a simple Total Productivity metric as the sum of all mass a participant removed from cores during the experiment.
 
@@ -174,7 +203,7 @@ This approach also allowed us to compare the relationship between Total Producti
 knitr::include_graphics(here::here("figure/Figure5.jpg"))
 ```
 
-Thus, it appears that Trained participants achieved higher Total Productivity by increasing average flaking Quantity across cores and without sacrificing Quality, whereas Untrained participants found other ways to vary Total Productivity (e.g., number of cores knapped rather than Quantity per core, see variance Table and Figure) and generally increased productivity at the expense of Quality. Experimental artifacts illustrating these trade-offs are presented in Figure.
+Thus, it appears that Trained participants achieved higher Total Productivity by increasing average flaking Quantity across cores and without sacrificing Quality, whereas Untrained participants found other ways to vary Total Productivity (e.g., number of cores knapped rather than Quantity per core, see variance Table and Figure) and generally increased productivity at the expense of Quality. Experimental artifacts illustrating these trade-offs are presented in **Figure???**.
 
 ```{r fig6, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Comparison of untrained and trained detached pieces illustrating the ability of Trained participants to maximize Quality and Productivity at the same time."}
 knitr::include_graphics(here::here("figure/Figure6.jpg"))
@@ -184,7 +213,14 @@ knitr::include_graphics(here::here("figure/Figure6.jpg"))
 
 Here we compare our flaking outcomes (DP size/shape and flaking performance factors) between the trained and untrained groups. Our expert demonstrator/instructor is included as a performance benchmark.
 
-Table summarizes the results of ANOVA tests group level difference in central tendency on various performance measures. We found no significant differences between the trained and untrained groups on our flaking Quantity and Quality factors. In contrast, three-way flake size and shape comparisons between our expert knapper and the two novice groups showed that the expert knapper made significantly more large flakes (effect size = 0.14), had a significantly higher core delta mass signal than either of the novice groups (effect size = 0.26), and left significantly smaller finished cores (effect size = 0.27) (**Figure** \@ref(fig:fig7)). All three of these results show either medium or large effect sizes. In all three comparisons, the trained group's data distributions tended towards the expert sample although they were not significantly different from the untrained group (**Figure** \@ref(fig:fig8)). We also observed a significant difference in shape factor 2 (splinters) driven by the expert's lower values, but with a very low (\<0.01) effect size. These results show that mean core reduction intensity and large flake production rates distinguish expert and novice performance whereas novices in experimental groups produced pieces of similar mean size and shape as those of the expert trainer.
+**Table** \@ref(tab:tab4) summarizes the results of ANOVA tests group level difference in central tendency on various performance measures. We found no significant differences between the trained and untrained groups on our flaking Quantity and Quality factors. In contrast, three-way flake size and shape comparisons between our expert knapper and the two novice groups showed that the expert knapper made significantly more large flakes (effect size = 0.14), had a significantly higher core delta mass signal than either of the novice groups (effect size = 0.26), and left significantly smaller finished cores (effect size = 0.27) (**Figure** \@ref(fig:fig7)). All three of these results show either medium or large effect sizes. In all three comparisons, the trained group's data distributions tended towards the expert sample although they were not significantly different from the untrained group (**Figure** \@ref(fig:fig8)). We also observed a significant difference in shape factor 2 (splinters) driven by the expert's lower values, but with a very low (\<0.01) effect size. These results show that mean core reduction intensity and large flake production rates distinguish expert and novice performance whereas novices in experimental groups produced pieces of similar mean size and shape as those of the expert trainer.
+```{r tab4, echo=FALSE, message=FALSE}
+library(tidyverse)
+df4<-read.csv(here::here("data/tables/table4.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df4, booktabs = T, caption = "Summary group-wise comparison statistics contrasting flake performance metrics by experiment condition and with the expert instructor. All comparisons are three-way except for the two skill PC factors and the total mass removed, which are two-way comparisons between the subject population as these factors were not applied to the expert data sample. Eta2 = ANOVA effect size (>0.1 = medium effect size, >0.2 = large effect size). * = non-parametric permuted p-values to account for unequal sample variances. SS = sum of squared differences, df = degrees of freedom, MS = mean squared difference.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 ```{r fig7, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Results showing significant differences between the instructor (expert) and novice flaking performance."}
 knitr::include_graphics(here::here("figure/Figure7.png"))
@@ -194,7 +230,15 @@ knitr::include_graphics(here::here("figure/Figure7.png"))
 knitr::include_graphics(here::here("figure/Figure8.jpg"))
 ```
 
-While we did not find significant differences in central tendency between our two experimental groups, results (**Figure** \@ref(fig:fig7)) did indicate lower variance in the trained group. To test whether training reduced variability in performance outcomes between subjects, we compared variance metrics between the trained and untrained individuals using the F-test on either core-averaged or flake specific variances. Table and **Figure** \@ref(fig:fig9) present the results from these comparisons showing significant variance differences predominantly in flaking Quality, number of large DPs, core delta mass, and total amount of flaked mass). In most instances, variance in the untrained group exceeds that of trained individuals by 1.5 to 4.7 times. The most salient effect of instruction was thus not to shift mean performance but to reduce variability by eliminating the skew (generally toward poorer outcomes) seen in the untrained group (**Figure** \@ref(fig:fig9)), rather than to shift the mean.
+While we did not find significant differences in central tendency between our two experimental groups, results (**Figure** \@ref(fig:fig7)) did indicate lower variance in the trained group. To test whether training reduced variability in performance outcomes between subjects, we compared variance metrics between the trained and untrained individuals using the F-test on either core-averaged or flake specific variances. **Table** \@ref(tab:tab5) and **Figure** \@ref(fig:fig9) present the results from these comparisons showing significant variance differences predominantly in flaking Quality, number of large DPs, core delta mass, and total amount of flaked mass). In most instances, variance in the untrained group exceeds that of trained individuals by 1.5 to 4.7 times. The most salient effect of instruction was thus not to shift mean performance but to reduce variability by eliminating the skew (generally toward poorer outcomes) seen in the untrained group (**Figure** \@ref(fig:fig9)), rather than to shift the mean.
+```{r tab5, echo=FALSE, message=FALSE}
+library(tidyverse)
+df5<-read.csv(here::here("data/tables/table5.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df5, booktabs = T, caption = "F-test results comparing variances between trained and untrained subjects across 
+our various flaking performance metrics.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 ```{r fig9, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Variance comparisons between trained and untrained individuals across various flaking performance metrics. Note the lower variance of the trained group in all the plots."}
 knitr::include_graphics(here::here("figure/Figure9.jpg"))
@@ -204,7 +248,14 @@ knitr::include_graphics(here::here("figure/Figure9.jpg"))
 
 In addition to comparing overall performance during the two hour experiment, we also wanted to determine if groups or individuals differed in learning (i.e., performance change) over the period. For these analyses, we calculated the learning stage as the ordinal number of each core out of the total number knapped by each subject (i.e., core 2 of 4 or 4 of 8 both equal 50% complete). These relative core use-order percentages were then binned into 20 percent brackets for core-order and group-level comparisons. Flaking outcomes were tracked using the two performance factors (Quality and Quantity). We added the nodule starting mass to track whether training/practice times impacted raw material selection.
 
-Table shows no significant training effects across the two performance measures either as grouped data or between individuals (**Figure** \@ref(fig:fig10) and **Figure** \@ref(fig:fig11)). This result demonstrated that flaking outcomes did not change dramatically across the study interval. This lack of significant learning effects is confirmed by an inspection of individual learning curves (Figure). The one significant main training effect related to core starting mass (with a strong effect size = 0.25). On average, core starting masses start low and increase, showing that participants selected smaller nodules first. As the smaller nodules in their allotment were depleted, participants were left to knap larger, less preferred nodules. This preference for smaller cores is somewhat less pronounced in the untrained group, as indicated by a small main effect of learning condition and generally higher starting nodule masses for the untrained group (Figure???).
+**Table** \@ref(tab:tab6) shows no significant training effects across the two performance measures either as grouped data or between individuals (**Figure** \@ref(fig:fig10) and **Figure** \@ref(fig:fig11)). This result demonstrated that flaking outcomes did not change dramatically across the study interval. This lack of significant learning effects is confirmed by an inspection of individual learning curves (Figure). The one significant main training effect related to core starting mass (with a strong effect size = 0.25). On average, core starting masses start low and increase, showing that participants selected smaller nodules first. As the smaller nodules in their allotment were depleted, participants were left to knap larger, less preferred nodules. This preference for smaller cores is somewhat less pronounced in the untrained group, as indicated by a small main effect of learning condition and generally higher starting nodule masses for the untrained group (Figure???).
+```{r tab6, echo=FALSE, message=FALSE}
+library(tidyverse)
+df6<-read.csv(here::here("data/tables/table6.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df6, booktabs = T, caption = "Summary group-wise comparison statistics contrasting flake performance metrics by experiment condition and relative core order. All comparisons are three-way. Eta2 = ANOVA effect size (>0.1 = medium effect size, >0.2 = large effect size). SS = sum of squared differences, df = degrees of freedom, MS = mean squared difference.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 ```{r fig10, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Comparisons of nodule starting mass across the study period by training condition. Results show a significant relationship between nodule starting mass and length of time in the study."}
 knitr::include_graphics(here::here("figure/Figure10.jpg"))
@@ -222,7 +273,7 @@ We considered all possible interactions between five individual difference measu
 
 The full models were fitted with the lm function in R 3.2.3, and we used the Glmulti package's automated model selection algorithm to select the best performing model (lowest AICc score) (see methods for further details on the multimodal selection process). All three models follow the same complete model statement as follows:
 
-*Flaking performance variable* $\sim$ Training condition + Highest n-back level + Raven's Progressive Matrix score + BEAST score + Fitt's score + Grip strength
+*Flaking performance variable $\sim$ Training condition + Highest n-back level + Raven's Progressive Matrix score + BEAST score + Fitt's score + Grip strength*
 
 For our two per-core performance factors (Quantity and Quality) it is also relevant to consider how individual core features may have affected performance. We found no evidence of individual or group level practice effects over the two hours, so we did not include core order in the models. We did, however, find that subjects selected progressively larger nodules throughout the experiment. It is thus important to understand whether nodule variability had any impact on our flaking results. Because starting nodule size (mass) and shape were strongly correlated (F [1,157] = 186, p \< 0.01, $R^2$ = 0.54) we included nodule mass as a covariate to control for any variance in flaking performance that may be driven by nodule differences.
 
@@ -233,9 +284,16 @@ Our first model examined variance in overall flaking productivity measured by ea
 *Total flaked mass* $\sim$ Training condition + Grip strength + RPM$\times$Highest n-back level + Fitts score$\times$BEAST score + Grip strength$\times$RPM
 
 This model explains a statistically significant and substantial proportion of variance in flaking productivity ($R^2$ = 0.84, F (6, 14) = 12.7, p \< 0.01, adj. $R^2$ = 0.77). A model residuals normality test shows no significant differences with the normal distribution (p = 0.72) indicating that this relationship is linear. A Breusch-Pagan test showed no evidence for heteroskedasticity (BP = 2, df = 6, p = 0.8).
+```{r tab7, echo=FALSE, message=FALSE}
+library(tidyverse)
+df7<-read.csv(here::here("data/tables/table7.csv"), fileEncoding = 'UTF-8-BOM')
+colnames(df7)[colnames(df7) %in% c("X95..CI", "t..12.")] <- c("95% CI", "t(12)")
+kableExtra::kbl(df7, booktabs = T, caption = "Summary and estimates for the overall flaking productivity model.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
-Table presents this model's coefficients and summary outputs, wherein baseline refers to the untrained condition with all continuous predictors at the sample average. The parameter estimates for the continuous predictors reflect the expected change in utility for 1 standard deviation change in the predictor variable. We found significant (p\< 0.05) and substantial (Standardized Estimate \>= 0.50, i.e. a 50% change in variable) main effects of Grip Strength, Visuospatial nBack, and BEAST. The main effect of Grip Strength (**Figure** \@ref(fig:fig12)), irrespective of learning condition, indicates the basic importance of strength in generating higher production rates among naive knappers at least when efficiency and quality are not considered.
-
+**Table** \@ref(tab:tab7) presents this model's coefficients and summary outputs, wherein baseline refers to the untrained condition with all continuous predictors at the sample average. The parameter estimates for the continuous predictors reflect the expected change in utility for 1 standard deviation change in the predictor variable. We found significant (p\< 0.05) and substantial (Standardized Estimate \>= 0.50, i.e. a 50% change in variable) main effects of Grip Strength, Visuospatial nBack, and BEAST. The main effect of Grip Strength (**Figure** \@ref(fig:fig12)), irrespective of learning condition, indicates the basic importance of strength in generating higher production rates among naive knappers at least when efficiency and quality are not considered.
 ```{r fig12, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Significant main effect of grip strength on overall flaking productivity."}
 knitr::include_graphics(here::here("figure/Figure12.jpeg"))
 ```
@@ -250,9 +308,19 @@ knitr::include_graphics(here::here("figure/Figure13.png"))
 
 The second full model examined the variance in average flaking Quantity per core. It thus complements our first model assessing overall productivity by testing for differences in reduction intensity at the level of individual cores. From a candidate pool of 55893 possible multivariate models, the best performing model returned an AICc value of 32 (Average AIC = 44). This model comprised the following statement with three main and four interaction effects:
 
-*Quantity* $\sim$ Highest n-back level + BEAST score + Fitt's score + Grip strength + Training condition$\times$Highest n-back level + Training condition$\times$BEAST score + Training condition$\times$Grip strength + Nodule mass (as control)
+*Quantity $\sim$ Highest n-back level + BEAST score + Fitt's score + Grip strength + Training condition$\times$Highest n-back level + Training condition$\times$BEAST score + Training condition$\times$Grip strength + Nodule mass (as control)*
 
 This model explains a statistically significant and substantial proportion of variance in quantity flaking ($R^2$ = 0.7, F (8, 12) = 3.6, p = 0.02, adj. $R^2$ = 0.5). A model residuals normality test shows no significant differences with the normal distribution (p = 0.38) indicating that this relationship (as required) is linear. A Breusch-Pagan test showed no evidence for heteroskedasticity (whether variance for all observations in our data set are the same) (BP = 4.4, df = 8, p = 0.8).
+
+**Table** \@ref(tab:tab8) presents this model’s coefficients and summary outputs, following the same format as Table. 
+```{r tab8, echo=FALSE, message=FALSE}
+library(tidyverse)
+df8<-read.csv(here::here("data/tables/table8.csv"), fileEncoding = 'UTF-8-BOM')
+colnames(df8)[colnames(df8) %in% c("X95..CI", "t..12.")] <- c("95% CI", "t(12)")
+kableExtra::kbl(df8, booktabs = T, caption = "Summary and estimates for Quantity flaking model.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
 
 The Quantity model roughly paralleled results for Total Production, yielding substantial and significant interactions between training condition, n-back level, BEAST scores, and grip strength. As with Total Production, higher visuospatial n-back levels and BEAST scores were associated with lower Quantity scores in the trained group but higher or unchanged Quantity in the untrained group (**Figure** \@ref(fig:fig14)).
 
@@ -270,9 +338,19 @@ knitr::include_graphics(here::here("figure/Figure15.jpg"))
 
 Our third model examining variance in Quality follows the same complete model statement we used for Quantity. From the same candidate pool size of 55893 possible multivariate models, the best performing model returned an AICc value of 32 (Average AIC = 39). This model comprised the following statement with three main and four interaction effects:
 
-*Quality flaking* $\sim$ Highest n-back level + Fitt's score + Grip strength + Fitt's score$\times$BEAST score + Grip strength$\times$BEAST score + Grip strength$\times$Fitt's score + Training condition$\times$Grip strength + Nodule mass (as control)
+*Quality flaking $\sim$ Highest n-back level + Fitt's score + Grip strength + Fitt's score$\times$BEAST score + Grip strength$\times$BEAST score + Grip strength$\times$Fitt's score + Training condition$\times$Grip strength + Nodule mass (as control)*
 
 This model explains a statistically significant and substantial proportion of variance in Quality ($R^2$ = 0.75, F (8, 12) = 4.6, p \< 0.01, adj. $R^2$ = 0.6) in the absence of any main training effects. A model residuals normality test shows no significant differences with the normal distribution (p = 0.41) indicating that this relationship is linear. A Breusch-Pagan test showed no evidence for heteroskedasticity (BP = 7, df = 8, p = 0.5).
+```{r tab9, echo=FALSE, message=FALSE}
+library(tidyverse)
+df9<-read.csv(here::here("data/tables/table9.csv"), fileEncoding = 'UTF-8-BOM')
+colnames(df9)[colnames(df9) %in% c("X95..CI", "t..12.")] <- c("95% CI", "t(12)")
+kableExtra::kbl(df9, booktabs = T, caption = "Summary and estimates for the Quality flaking model.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 7)%>%
+kableExtra::row_spec(0, bold = T)
+```
+
+**Table** \@ref(tab:tab9) presents this model’s coefficients and summary outputs following the same data format as **Table** \@ref(tab:tab7) & **Table** \@ref(tab:tab8). The results show no effects that were both significant and substantial (Estimate >= 0.5). 
 
 The Quality model did produce two statistically (p\< 0.05) significant interaction effects (RPM \* BEAST & Fitts \* n-back). However, these interactions had relatively small effects on Quality (\<0.5) and we believe that interpreting these results from our small, exploratory study would be inappropriate. **Figure** \@ref(fig:fig16) shows the uneven distribution of data points for these interactions, which suggests vulnerability to leveraging effects of a small number of extreme value combinations.
 
@@ -296,7 +374,7 @@ The most salient finding of our exploratory study is that the presence/absence o
 
 ## Variance Reduction
 
-In our experiment, the strongest effects of teaching were to reduce variance (Figure, Table) rather than shift mean values. In particular, teaching acted as a "safety net" that homogenized performance by reducing the frequency of extremely poor outcomes (i.e., learning failures). This finding provides additional support for the hypothesis that teaching would have increased the reliability of Oldowan skill reproduction [@morgan2015] while simultaneously corroborating the view that basic flaking competence can be achieved in its absence [@tennie2017]. Our results thus do not imply that teaching was required or even present during Oldowan times (but see @gärdenfors2017), but rather serve to reinforce the plausibility of co-evolutionary scenarios positing the cost/reliability of technological skill acquisition as a selection pressure favoring the evolution of teaching and language [@stout2010; @morgan2015; @stout2017].
+In our experiment, the strongest effects of teaching were to reduce variance (**Figure** \@ref(fig:fig9), **Table** \@ref(tab:tab5)) rather than shift mean values. In particular, teaching acted as a "safety net" that homogenized performance by reducing the frequency of extremely poor outcomes (i.e., learning failures). This finding provides additional support for the hypothesis that teaching would have increased the reliability of Oldowan skill reproduction [@morgan2015] while simultaneously corroborating the view that basic flaking competence can be achieved in its absence [@tennie2017]. Our results thus do not imply that teaching was required or even present during Oldowan times (but see @gärdenfors2017), but rather serve to reinforce the plausibility of co-evolutionary scenarios positing the cost/reliability of technological skill acquisition as a selection pressure favoring the evolution of teaching and language [@stout2010; @morgan2015; @stout2017].
 
 ## Knapping Behaviors
 
@@ -327,7 +405,5 @@ Another major limitation that our study shares with all other published experime
 # Conclusions
 
 # Acknowledgments
-
-# Figures
 
 # References

@@ -1,0 +1,14 @@
+﻿Variable,Factor 1,Factor 2,Factor 3
+Variance %,78,6.2,5.4
+Interpretation,Size,Relative thickness and elongation,Relative thinness and proximal breadth
+Flake thickness,0.68,0.58,-0.35
+Flake length,0.81,0.31,-0.11
+Width-10% (tip),0.82,-0.31,-0.16
+Width-20%,0.91,-0.27,-0.19
+Width-30%,0.94,-0.2,-0.16
+Width-40%,0.95,-0.07,-0.05
+Width-50%,0.96,-0.06,-0.03
+Width-60%,0.94,-0.06,0.01
+Width-70%,0.95,0.05,0.18
+Width-80%,0.92,0.11,0.34
+Width-90% (base),0.8,0.12,0.47
