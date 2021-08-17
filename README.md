@@ -1,10 +1,11 @@
 # PaST-pilot
-Pargeter et al., JAMT, Testing the cognitive foundations of Paleolithic social transmission (data, code, and manuscript)
+Pargeter et al., JAMT, Testing the cognitive foundations of Paleolithic social transmission (code, data, figure, and manuscript)
 
 
 The code has been successfully executed on JP's MAC and replicated on CL's PC with the following R settings.
 
 JP's R setting
+
 R version 4.0.3 (2020-10-10)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Big Sur 10.16
@@ -40,6 +41,7 @@ loaded via a namespace (and not attached):
 [120] lubridate_1.7.10     base64enc_0.1-3 
 
 CL's R setting
+
 R version 4.1.1 (2021-08-10)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows 10 x64 (build 19043)
