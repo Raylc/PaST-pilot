@@ -809,12 +809,12 @@ pred.mm_cond_nback<- ggpredict(PC1_best_model, terms = c("Highest_nBack","Condit
 levels(pred.mm_cond_nback$group) <- c("Untrained", "Trained")
 ##Fig 14a
 p14a<- plot(pred.mm_cond_nback,facet=F, add.data = F,show.title =F, alpha=0.07) + 
-  labs(title ="b",x = "Highest n-back level", 
+  labs(title ="a",x = "Highest n-back level", 
        y = "Quantity flaking (higher = more quantity flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))
 
-.mm_beast_condition<- ggpredict(PC1_best_model, terms = c("BEAST","Condition"))  # this gives overall predictions for the model
+pred.mm_beast_condition<- ggpredict(PC1_best_model, terms = c("BEAST","Condition"))  # this gives overall predictions for the model
 levels(pred.mm_beast_condition$group) <- c("Untrained", "Trained")
 ##Fig 14b
 
@@ -1029,3 +1029,23 @@ summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=model_data))
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="0")))
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="1")))
 
+## Fig 12
+pred.mm_grip<- ggpredict(quantity_best_model, terms = c("Grip_Strength"))  # this gives overall predictions for the model
+autoplot(pred.mm_grip) +
+  # Expected + CI
+  geom_CI_ribbon() +
+  geom_expected_line()+
+  layer_fit_data(size=3, color = "black")+
+  labs(x = "Grip strength",
+       y = "Total mass removed from cores")+
+  theme_classic()+
+  theme(text = element_text(size=20))
+
+
+## Supplementary tables
+## 1.lithic performance (total cores used, 
+## total flake mass/flaked core mass; 
+## total flaked mass; total flakes >40mm & 5 g)
+
+
+## 2. 

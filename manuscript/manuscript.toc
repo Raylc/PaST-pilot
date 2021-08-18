@@ -21,7 +21,7 @@
 \contentsline {subsection}{\numberline {3.5}Do individual differences in motor skill and psychometric measures predict flaking performance?}{32}{subsection.3.5}%
 \contentsline {subsubsection}{\numberline {3.5.1}Model 1: Individual differences and overall productivity}{33}{subsubsection.3.5.1}%
 \contentsline {subsubsection}{\numberline {3.5.2}Model 2: Individual differences and quality flaking}{36}{subsubsection.3.5.2}%
-\contentsline {subsubsection}{\numberline {3.5.3}Model 3: Individual differences and quality flaking}{39}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.3}Model 3: Individual differences and quality flaking}{38}{subsubsection.3.5.3}%
 \contentsline {subsection}{\numberline {3.6}Behavioral observations}{40}{subsection.3.6}%
 \contentsline {section}{\numberline {4}Discussion}{41}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Variance Reduction}{42}{subsection.4.1}%

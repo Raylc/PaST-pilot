@@ -223,7 +223,7 @@ kableExtra::row_spec(0, bold = T)
 ```
 
 ```{r fig7, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Results showing significant differences between the instructor (expert) and novice flaking performance."}
-knitr::include_graphics(here::here("figure/Figure7.png"))
+knitr::include_graphics(here::here("figure/Figure7.jpg"))
 ```
 
 ```{r fig8, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Comparison of untaught, taught, and expert cores."}
@@ -302,7 +302,7 @@ knitr::include_graphics(here::here("figure/Figure12.jpg"))
 Effects of visuospatial working memory capacity and social information use are more complicated, as indicated by strong interactions with learning condition (**Figure** \@ref(fig:fig13)). In each case, higher scores were associated with better performance in the uninstructed group but worse performance in the instructed group. Positive effects in the uninstructed group were as expected, given the hypothesized importance of spatial cognition (Coolidge and Wynn 2005) and social learning (Morgan et al. 2015) in the acquisition of knapping skills. Negative effects in the trained group are unexpected but presumably reflect differences in learning strategies adopted under instruction.
 
 ```{r fig13, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Two significant interaction effects of training condition, social information, and visuo-spatial working memory on overall flaking productivity."}
-knitr::include_graphics(here::here("figure/Figure13.png"))
+knitr::include_graphics(here::here("figure/Figure13.jpg"))
 ```
 
 ### Model 2: Individual differences and quality flaking
