@@ -29,6 +29,7 @@ library(sjPlot)
 library(rcompanion)
 library(caret)
 library(permuco)
+library(ggggeffects)
 library(patchwork)
 
 #### Import datasets ####
@@ -512,7 +513,7 @@ p9d<-ggplot(filter(total_mass_data,!subject=="demo"),
   ylab("Total mass removed from cores")+
   theme(text = element_text(size=20))
 (p9a|p9b)/(p9c|p9d)
-ggsave("figure/Figure9.jpg",width = 40, height = 40, units = "cm", dpi=300)
+## ggsave("figure/Figure9.jpg",width = 40, height = 40, units = "cm", dpi=300)
 
 ## Skill factor comparisons between novice groups
 leveneTest(skill_pca_dim1_quantity_flaking ~ Condition, data = subject_skillPC_data)
@@ -576,7 +577,7 @@ p7b<-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_
   ylab("Core delta mass")+
   theme(text = element_text(size=20))
 p7a|p7b
-ggsave("figure/Figure7.jpg",width = 40, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure7.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
 leveneTest(delta_mass ~ condition_threeway, data = complete_past_data_shape_skill_pca_combined_bycore)
 aovperm(delta_mass ~ condition_threeway,
@@ -709,7 +710,7 @@ p11b<- ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim2_qual
   theme(text = element_text(size=14))+
   theme(legend.position = "NULL")
 p11a|p11b
-ggsave("figure/Figure11.jpg",width = 50, height = 25, units = "cm", dpi=300)
+## ggsave("figure/Figure11.jpg",width = 50, height = 25, units = "cm", dpi=300)
 
 aov(log(core_start_mass)~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
 
@@ -723,7 +724,7 @@ ggplot(learning_rate_data,aes(x=Order,y=log(core_start_mass), color=Condition))+
   scale_x_continuous(breaks=seq(0,9,1))+
   theme_classic()+
   theme(text = element_text(size=20))
-ggsave("figure/Figure10.jpg",width = 25, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure10.jpg",width = 25, height = 20, units = "cm", dpi=300)
 
 #### Performance and individual variation models ####
 
@@ -826,7 +827,7 @@ p14b<- plot(pred.mm_beast_condition,facet=F, add.data = F,show.title =F, alpha=0
   theme(text = element_text(size=20))+
   theme(legend.position = "none") 
 p14a|p14b
-ggsave("figure/Figure14.jpg",width = 40, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure14.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
 ## Fig15
 pred.mm_cond_grip<- ggpredict(PC1_best_model, terms = c("Condition","Grip_Strength"))  # this gives overall predictions for the model
@@ -839,7 +840,7 @@ plot(pred.mm_cond_grip,facet=F, add.data = F,show.title =F, alpha=0.07) +
   scale_color_manual(labels = c("low (-1.0)","medium (-0.1)", "high (0.87)"),
                      values = c("blue", "red", "purple"))+
   scale_x_discrete(limits=c("Untrained", "Trained"))
-ggsave("figure/Figure15.jpg",width = 25, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure15.jpg",width = 25, height = 20, units = "cm", dpi=300)
 
 pred
 ##### Skill factor 2 model (quality flaking) ####
@@ -909,7 +910,7 @@ labs(title = "a",
   theme(text = element_text(size=20))+ 
   labs(color = "BEAST score")
 p16a|p16b
-ggsave("figure/Figure16.jpg",width = 40, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure16.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
 #### Quantity flaking model 3 ####
 
@@ -972,7 +973,7 @@ p13a<- plot(pred.mm_train_beast,facet=F, add.data =F,show.title =F, alpha=0.07) 
   scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
   labs(color = "")
 p13a|p13b
-ggsave("figure/Figure13.jpg",width = 40, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure13.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
 
 #### Plot comparisons between quantity (factor1), quality (factor2), and productivity ####
@@ -1023,7 +1024,7 @@ p5b<- ggplot(model_data, aes(x=skill_pca_dim2_quality_flaking, y=removed_mass_su
   scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
   theme(legend.position = "none")
 p5a|p5b|p5c
-ggsave("figure/Figure5.jpg",width = 60, height = 20, units = "cm", dpi=300)
+## ggsave("figure/Figure5.jpg",width = 60, height = 20, units = "cm", dpi=300)
 
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=model_data))
 summary(lm(skill_pca_dim2_quality_flaking~removed_mass_sum, data=subset(model_data, Condition=="0")))
@@ -1040,12 +1041,70 @@ autoplot(pred.mm_grip) +
        y = "Total mass removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))
+## ggsave("figure/Figure12.jpg",width = 20, height = 15, units = "cm", dpi=300)
 
 
 ## Supplementary tables
 ## 1.lithic performance (total cores used, 
 ## total flake mass/flaked core mass; 
-## total flaked mass; total flakes >40mm & 5 g)
+
+complete<-complete_past_data_psycho
+aggregate(complete$mass_flakes_flaked_mass_bycore, by=list(complete$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(complete$total_flaked_mass_bycore, by=list(complete$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(complete$total_flakes_above40mm_5g_bycore, by=list(complete$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+wilcox.test(mass_flakes_flaked_mass_bycore ~ Condition, data = complete,
+            paired = FALSE)
+wilcox.test(total_flaked_mass_bycore ~ Condition, data = complete,
+            paired = FALSE)
+wilcox.test(total_flakes_above40mm_5g_bycore ~ Condition, data = complete,
+            paired = FALSE)
+plyr::count(complete, 'Condition')
+individual<-complete[!duplicated(complete$subject), ]
+aggregate(individual$Total_Cores_Used, by=list(individual$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+wilcox.test(Total_Cores_Used ~ Condition, data = individual,
+            paired = FALSE)
+plyr::count(individual, 'Condition')
 
 
 ## 2. 
+complete1<-complete_past_data_plusflakes %>% 
+  mutate(value = replace(max_flake_length, 
+                         max_flake_length == "n/a", NA)) %>% 
+  drop_na()
+
+complete1<-complete1 %>% 
+  mutate(value = replace(max_width, 
+                         max_width == "n/a", NA)) %>% 
+  drop_na()
+aggregate(complete1$flake_mass, by=list(complete1$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(complete1$max_flake_length, by=list(complete1$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(complete1$max_width, by=list(complete1$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(complete1$flake_max_thickness, by=list(complete1$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+wilcox.test(flake_mass ~ Condition, data = complete1,
+            paired = FALSE)
+wilcox.test(max_flake_length ~ Condition, data = complete1,
+            paired = FALSE)
+wilcox.test(max_width ~ Condition, data = complete1,
+            paired = FALSE)
+wilcox.test(flake_max_thickness ~ Condition, data = complete1,
+            paired = FALSE)
+plyr::count(complete1, 'Condition')
+
+
+## 3.
+aggregate(experiment_data_filled$start_mass, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(experiment_data_filled$maxlength, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(experiment_data_filled$maxwidth, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(experiment_data_filled$maxthickness, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+aggregate(experiment_data_filled$edge_angle_degree, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
+wilcox.test(start_mass ~ Condition, data = experiment_data_filled,
+            paired = FALSE)
+wilcox.test(maxlength ~ Condition, data = experiment_data_filled,
+            paired = FALSE)
+wilcox.test(maxwidth ~ Condition, data = experiment_data_filled,
+            paired = FALSE)
+wilcox.test(maxthickness ~ Condition, data = experiment_data_filled,
+            paired = FALSE)
+wilcox.test(edge_angle_degree ~ Condition, data = experiment_data_filled,
+            paired = FALSE)
+plyr::count(experiment_data_filled, 'Condition')

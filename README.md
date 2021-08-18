@@ -1,10 +1,10 @@
 # PaST-pilot
 
-Pargeter et al., JAMT, Testing the cognitive foundations of Paleolithic social transmission (code, data, figure, and manuscript)
+Pargeter et al., JAMT, Testing the motor and cognitive foundations of Paleolithic social transmission (code, data, figure, and manuscript)
 
 ## Description
 
-Pargeter et al., JAMT, Testing the cognitive foundations of Paleolithic social transmission (code, data, figure, and manuscript)
+Pargeter et al., JAMT, Testing the motor and cognitive foundations of Paleolithic social transmission (code, data, figure, and manuscript)
 
 ## Getting Started
 
