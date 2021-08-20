@@ -516,9 +516,15 @@ p9d<-ggplot(filter(total_mass_data,!subject=="demo"),
 ## ggsave("figure/Figure9.jpg",width = 40, height = 40, units = "cm", dpi=300)
 
 ## Skill factor comparisons between novice groups
+
+subject_skillPC_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
+  subset(!subject=="demo") %>%
+  distinct(subject, .keep_all=T) %>%
+  select(c(subject,Condition,skill_pca_dim1_quantity_flaking,skill_pca_dim2_quality_flaking))
+
 leveneTest(skill_pca_dim1_quantity_flaking ~ Condition, data = subject_skillPC_data)
-aovperm(skill_pca_dim1_quantity_flaking ~ Condition,
-        data = subject_skillPC_data)
+summary(aov(skill_pca_dim1_quantity_flaking ~ Condition,
+        data = subject_skillPC_data))
 
 leveneTest(skill_pca_dim2_quality_flaking ~ Condition, data = filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo" ))
 aovperm(skill_pca_dim2_quality_flaking ~ Condition,
