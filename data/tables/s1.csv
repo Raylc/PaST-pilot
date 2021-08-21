@@ -1,13 +1,13 @@
 ﻿,mean,median,sd,min,max,p
-total cores used,,,,,,0.4056
-Untrained(n=10),6.4,6.5,2.674987,2,9,
+total cores used,,,,,,
+Untrained(n=10),6.4,6.5,2.674987,2,9,0.4056
 Trained(n=11),7.727273,8,1.103713,6,9,
-total flake mass/flaked core mass,,,,,,0.3069
-Untrained(n=64),0.6838199,0.6846151,0.1072198,0.3918026,1.0372902,
+total flake mass/flaked core mass,,,,,,
+Untrained(n=64),0.6838199,0.6846151,0.1072198,0.3918026,1.0372902,0.3069
 Trained(n=83),0.6957853,0.7062878,0.1026673,0.3475446,0.9394415,
- total flaked mass,,,,,,0.2672
-Untrained(n=64),803.0812,820.15,302.4838,108.4,1416.4,
+ total flaked mass,,,,,,
+Untrained(n=64),803.0812,820.15,302.4838,108.4,1416.4,0.2672
 Trained(n=83),767.1711,718.9,317.9157,156.2,1614.5,
-total flakes >40mm & 5 g,,,,,,0.1976
-Untrained(n=64),20.578125,18,10.083469,4,49,
+total flakes >40mm & 5 g,,,,,,
+Untrained(n=64),20.578125,18,10.083469,4,49,0.1976
 Trained(n=83),21.686747,21,8.185245,4,42,

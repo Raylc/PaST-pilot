@@ -1051,8 +1051,7 @@ autoplot(pred.mm_grip) +
 
 
 ## Supplementary tables
-## 1.lithic performance (total cores used, 
-## total flake mass/flaked core mass; 
+## 1. Lithic performance comparison between two groups
 
 complete<-complete_past_data_psycho
 aggregate(complete$mass_flakes_flaked_mass_bycore, by=list(complete$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
@@ -1072,7 +1071,7 @@ wilcox.test(Total_Cores_Used ~ Condition, data = individual,
 plyr::count(individual, 'Condition')
 
 
-## 2. 
+## 2. Flake metrics comparison between two groups
 complete1<-complete_past_data_plusflakes %>% 
   mutate(value = replace(max_flake_length, 
                          max_flake_length == "n/a", NA)) %>% 
@@ -1097,7 +1096,7 @@ wilcox.test(flake_max_thickness ~ Condition, data = complete1,
 plyr::count(complete1, 'Condition')
 
 
-## 3.
+## 3. Starting nodule metrics comparison between two groups
 aggregate(experiment_data_filled$start_mass, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
 aggregate(experiment_data_filled$maxlength, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
 aggregate(experiment_data_filled$maxwidth, by=list(experiment_data_filled$Condition), FUN=function(x) cbind(mean(x), median(x), sd(x), min(x),max(x)))
