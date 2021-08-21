@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  21 AUG 2021 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  21 AUG 2021 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -763,28 +763,31 @@ Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure5.jpg  used on inpu
 t line 411.
 (pdftex.def)             Requested size: 469.75682pt x 156.5856pt.
 [24]
-<C:/FilesVC/PaST-pilot/figure/Figure6.jpg, id=569, 3049.3925pt x 1261.71375pt>
+<C:/FilesVC/PaST-pilot/figure/Figure6.jpg, id=573, 3049.3925pt x 1261.71375pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure6.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure6.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure6.jpg  used on inpu
 t line 422.
 (pdftex.def)             Requested size: 469.71957pt x 194.35072pt.
 [25 <c:/FilesVC/PaST-pilot/figure/Figure5.jpg> <c:/FilesVC/PaST-pilot/figure/Fi
-gure6.jpg>] [26]
-<C:/FilesVC/PaST-pilot/figure/Figure7.jpg, id=586, 1138.0116pt x 569.0058pt>
+gure6.jpg>]
+LaTeX Font Info:    Font shape `OMS/put/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 467.
+[26]
+<C:/FilesVC/PaST-pilot/figure/Figure7.jpg, id=592, 1138.0116pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure7.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure7.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure7.jpg  used on inpu
 t line 474.
 (pdftex.def)             Requested size: 469.74815pt x 234.87407pt.
-<C:/FilesVC/PaST-pilot/figure/Figure8.jpg, id=587, 952.7595pt x 377.0085pt>
+<C:/FilesVC/PaST-pilot/figure/Figure8.jpg, id=593, 947.9415pt x 343.7643pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure8.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure8.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure8.jpg  used on inpu
 t line 483.
-(pdftex.def)             Requested size: 469.74928pt x 185.88055pt.
+(pdftex.def)             Requested size: 469.74599pt x 170.35005pt.
 [27 <c:/FilesVC/PaST-pilot/figure/Figure7.jpg>]
-<C:/FilesVC/PaST-pilot/figure/Figure9.jpg, id=596, 1138.0116pt x 1138.0116pt>
+<C:/FilesVC/PaST-pilot/figure/Figure9.jpg, id=603, 1138.0116pt x 1138.0116pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure9.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure9.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure9.jpg  used on inpu
@@ -792,14 +795,14 @@ t line 517.
 (pdftex.def)             Requested size: 469.74815pt x 469.74815pt.
 [28 <c:/FilesVC/PaST-pilot/figure/Figure8.jpg>] [29 <c:/FilesVC/PaST-pilot/figu
 re/Figure9.jpg>]
-<C:/FilesVC/PaST-pilot/figure/Figure10.jpg, id=611, 711.1368pt x 569.0058pt>
+<C:/FilesVC/PaST-pilot/figure/Figure10.jpg, id=618, 711.1368pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure10.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure10.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure10.jpg  used on inp
 ut line 560.
 (pdftex.def)             Requested size: 469.75322pt x 375.86623pt.
 [30]
-<C:/FilesVC/PaST-pilot/figure/Figure11.jpg, id=619, 1422.5145pt x 711.1368pt>
+<C:/FilesVC/PaST-pilot/figure/Figure11.jpg, id=626, 1422.5145pt x 711.1368pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure11.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure11.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure11.jpg  used on inp
@@ -807,14 +810,14 @@ ut line 569.
 (pdftex.def)             Requested size: 469.75682pt x 234.83862pt.
 [31 <c:/FilesVC/PaST-pilot/figure/Figure10.jpg>] [32 <c:/FilesVC/PaST-pilot/fig
 ure/Figure11.jpg>] [33]
-<C:/FilesVC/PaST-pilot/figure/Figure12.jpg, id=638, 569.0058pt x 426.6339pt>
+<C:/FilesVC/PaST-pilot/figure/Figure12.jpg, id=645, 569.0058pt x 426.6339pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure12.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure12.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure12.jpg  used on inp
 ut line 623.
 (pdftex.def)             Requested size: 469.75682pt x 352.21815pt.
 [34]
-<C:/FilesVC/PaST-pilot/figure/Figure13.jpg, id=646, 1138.0116pt x 569.0058pt>
+<C:/FilesVC/PaST-pilot/figure/Figure13.jpg, id=655, 1138.0116pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure13.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure13.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure13.jpg  used on inp
@@ -822,28 +825,28 @@ ut line 634.
 (pdftex.def)             Requested size: 469.74815pt x 234.87407pt.
 [35 <c:/FilesVC/PaST-pilot/figure/Figure12.jpg>] [36 <c:/FilesVC/PaST-pilot/fig
 ure/Figure13.jpg>]
-<C:/FilesVC/PaST-pilot/figure/Figure14.jpg, id=661, 1138.0116pt x 569.0058pt>
+<C:/FilesVC/PaST-pilot/figure/Figure14.jpg, id=672, 1138.0116pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure14.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure14.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure14.jpg  used on inp
 ut line 679.
 (pdftex.def)             Requested size: 469.74815pt x 234.87407pt.
 [37 <c:/FilesVC/PaST-pilot/figure/Figure14.jpg>]
-<C:/FilesVC/PaST-pilot/figure/Figure15.jpg, id=670, 711.1368pt x 569.0058pt>
+<C:/FilesVC/PaST-pilot/figure/Figure15.jpg, id=681, 711.1368pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure15.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure15.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure15.jpg  used on inp
 ut line 690.
 (pdftex.def)             Requested size: 469.75322pt x 375.86623pt.
 [38 <c:/FilesVC/PaST-pilot/figure/Figure15.jpg>]
-<C:/FilesVC/PaST-pilot/figure/Figure16.jpg, id=681, 1138.0116pt x 569.0058pt>
+<C:/FilesVC/PaST-pilot/figure/Figure16.jpg, id=693, 1138.0116pt x 569.0058pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure16.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure16.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure16.jpg  used on inp
 ut line 735.
 (pdftex.def)             Requested size: 469.74815pt x 234.87407pt.
 [39]
-<C:/FilesVC/PaST-pilot/figure/Figure17.jpg, id=690, 425.4294pt x 297.2706pt>
+<C:/FilesVC/PaST-pilot/figure/Figure17.jpg, id=701, 425.4294pt x 297.2706pt>
 File: C:/FilesVC/PaST-pilot/figure/Figure17.jpg Graphic file (type jpg)
 <use C:/FilesVC/PaST-pilot/figure/Figure17.jpg>
 Package pdftex.def Info: C:/FilesVC/PaST-pilot/figure/Figure17.jpg  used on inp
@@ -852,39 +855,40 @@ ut line 751.
 [40 <c:/FilesVC/PaST-pilot/figure/Figure16.jpg>] [41 <c:/FilesVC/PaST-pilot/fig
 ure/Figure17.jpg>] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] 
 [54] [55] [56] [57] [58]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1150.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1158.
 [59]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1150.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1158.
 (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1150.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1150.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1158.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1158.
  ) 
 Here is how much of TeX's memory you used:
- 16765 strings out of 492162
- 247935 string characters out of 6129062
- 390216 words of memory out of 5000000
- 20225 multiletter control sequences out of 15000+600000
- 170454 words of font info for 268 fonts, out of 8000000 for 9000
+ 16774 strings out of 492162
+ 248064 string characters out of 6129062
+ 390237 words of memory out of 5000000
+ 20228 multiletter control sequences out of 15000+600000
+ 170920 words of font info for 270 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,42p,2797b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,42p,2933b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2019/tex
 mf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2019/texmf-dist/fonts/enc/
 dvips/lm/lm-mathit.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/texlive/2019/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/l
-mmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texli
-ve/2019/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2019/texmf-dist/
-fonts/type1/public/lm/lmr8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/l
-m/lmss8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/te
-xlive/2019/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><c:/texlive/2019/texm
-f-dist/fonts/type1/adobe/utopia/putr8a.pfb><c:/texlive/2019/texmf-dist/fonts/ty
-pe1/adobe/utopia/putri8a.pfb>
-Output written on manuscript.pdf (59 pages, 13578520 bytes).
+ublic/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi10.pfb>
+<c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2019/te
+xmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type
+1/public/lm/lmr8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmss8.pf
+b><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2019
+/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><c:/texlive/2019/texmf-dist/fon
+ts/type1/adobe/utopia/putr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/
+utopia/putri8a.pfb>
+Output written on manuscript.pdf (59 pages, 13560637 bytes).
 PDF statistics:
- 1217 PDF objects out of 1440 (max. 8388607)
- 1115 compressed objects within 12 object streams
- 270 named destinations out of 1000 (max. 500000)
+ 1280 PDF objects out of 1440 (max. 8388607)
+ 1177 compressed objects within 12 object streams
+ 273 named destinations out of 1000 (max. 500000)
  20766 words of extra memory for PDF output out of 24883 (max. 10000000)
 

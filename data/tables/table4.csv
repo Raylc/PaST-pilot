@@ -1,21 +1,21 @@
 ﻿Variable,Parameter,SS,df,MS,F,p,Eta2
-Skill PC factor 1 (quantity flaking)*,Group,0.3,1,na,0.8,0.3,na
-,Residuals          ,9.4,20,na,      ,       ,         
-Skill PC factor 2 (quality flaking)*,Group,<0.1,1,na,<0.1,0.9,na
-,Residuals          ,9,20,na,       ,       ,     
+Skill PC factor 1 (quantity flaking)*,Group,0.03,1,0.03,0.01,0.8,na
+,Residuals          ,40.49,21,1.9,,,
+Skill PC factor 2 (quality flaking)*,Group,2.03,1,na,1.2,0.2,na
+,Residuals          ,33.8,21,na,,,
 Flake factor 1 (size),Group,22.3,2,11.1,1.3,0.2,na
-,Residuals          ,36741.35,4328,8.5,      ,       ,         
+,Residuals          ,36741.35,4328,8.5,,,
 Flake factor 2 (relative thickness),Group,11,2,5.46,8.3,<0.01,<0.01
-,Residuals          ,2842.2,4328,0.66,      ,        ,     
+,Residuals          ,2842.2,4328,0.66,,,
 Flake factor 3 (basal relative to tip width)*,Group,0.04,2,na,0.9,0.9,na
 ,Residuals          ,2404,4328,na,,,
 Flakes > 40mm and 5g*,Group,4967,2,na,23.5,<0.01,0.14
-,Residuals          ,19496,185,na,       ,        ,     
+,Residuals          ,19496,185,na,,,
 Mass of flakes : flaked mass,Group,0.06,2,0.03,2.3,0.1,na
-,Residuals          ,2.4,183,0.01,      ,       ,     
+,Residuals          ,2.4,183,0.01,,,
 Core delta mass*,Group,0.6,2,na,13.7,<0.01,0.26
-,Residuals          ,4.4,184,na,       ,        ,     
+,Residuals          ,4.4,184,na,,,
 Total cores used,Group,8.5,1,8.5,2.2,0.1,na
 ,Residuals,79.4,21,3.7,,,
 Total flaked mass,Group,22623898.1,1,2262389,0.5,0.4,na
-,Residuals,39348298797,21,4451571,      ,       ,     
+,Residuals,39348298797·,21,4451571,,,
