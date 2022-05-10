@@ -438,9 +438,9 @@ var.test(skill_pca_dim2_quality_flaking ~ Condition, complete_past_data_shape_sk
 p9b<-ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
        aes(x=Condition, y=skill_pca_dim2_quality_flaking, color=Condition)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3,position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
-  scale_x_discrete(labels = c('Untrained','Trained'))+
+  geom_point(size=3,position = position_jitterdodge(),aes(shape=Condition)) +
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("b") +xlab("") +
@@ -463,9 +463,9 @@ var.test(total_flakes_above40mm_5g_bycore ~ Condition, complete_past_data_shape_
 p9a<-ggplot(filter(complete_past_data_shape_skill_pca_combined_bycore,!subject=="demo"), 
        aes(x=Condition, y=total_flakes_above40mm_5g_bycore, color=Condition)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3,position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
-  scale_x_discrete(labels = c('Untrained','Trained'))+
+  geom_point(size=3,position = position_jitterdodge(),aes(shape=Condition)) +
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("a") +xlab("") +
@@ -491,9 +491,9 @@ var.test(removed_mass_sum ~ Condition, total_mass_data,
 p9c<-ggplot(filter(total_mass_data,!subject=="demo"), 
        aes(x=Condition, y=Total_Cores_Used, color=Condition)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3,position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
-  scale_x_discrete(labels = c('Untrained','Trained'))+
+  geom_point(size=3,position = position_jitterdodge(),aes(shape=Condition)) +
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("c") +xlab("") +
@@ -504,9 +504,9 @@ p9c<-ggplot(filter(total_mass_data,!subject=="demo"),
 p9d<-ggplot(filter(total_mass_data,!subject=="demo"), 
        aes(x=Condition, y=removed_mass_sum, color=Condition)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3,position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
-  scale_x_discrete(labels = c('Untrained','Trained'))+
+  geom_point(size=3,position = position_jitterdodge(),aes(shape=Condition)) +
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("d") +xlab("") +
@@ -550,9 +550,9 @@ aovperm(flake_pca_dim3 ~ condition_threeway, #implement permutation tests for un
 ##Fig 7a
 p7a<-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=total_flakes_above40mm_5g_bycore, color=condition_threeway)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3, position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Instructor","Trained", "Untrained"), values = c("purple","blue", "red")) +
-  scale_x_discrete(labels = c("Instructor","Trained", "Untrained"))+
+  geom_point(size=3, position = position_jitterdodge(),aes(shape=condition_threeway)) +
+  scale_color_manual(labels = c("Expert","active teaching", "observation only"), values = c("purple", "red", "blue")) +
+  scale_x_discrete(labels = c("Expert","active teaching", "observation only"))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("a") +xlab("") +
@@ -574,9 +574,9 @@ epsilonSquared(x = complete_past_data_shape_skill_pca_combined_bycore$total_flak
 ##Fig 7b
 p7b<-ggplot(complete_past_data_shape_skill_pca_combined_bycore, aes(x=condition_threeway, y=delta_mass, color=condition_threeway)) +
   geom_boxplot(outlier.size=0)+
-  geom_point(size=3, position = position_jitterdodge()) +
-  scale_color_manual(labels = c("Instructor","Trained", "Untrained"), values = c("purple","blue", "red"))+
-  scale_x_discrete(labels = c("Instructor","Trained", "Untrained"))+
+  geom_point(size=3, position = position_jitterdodge(),aes(shape=condition_threeway)) +
+  scale_color_manual(labels = c("Expert","active teaching", "observation only"), values = c("purple", "red", "blue"))+
+  scale_x_discrete(labels = c("Expert","active teaching", "observation only"))+
   theme_classic() +
   theme(legend.position = "none")+
   ggtitle("b") +xlab("") +
@@ -642,7 +642,7 @@ learning_rate_data<-complete_past_data_shape_skill_pca_combined_bycore %>%
                                           adjusted_cores_used > 60 & adjusted_cores_used < 80 ~ "60_80",
                                           adjusted_cores_used > 80 & adjusted_cores_used < 100 ~ "80-100",
                                           TRUE ~ "80-100"),
-             Condition=dplyr::recode(Condition, '0' = "Untrained", '1'="Trained")) %>%
+             Condition=dplyr::recode(Condition, '0' = "observation only", '1'="active teaching")) %>%
       ungroup() %>%
       select(c(subject, Condition, core_number, Order,adjusted_cores_used,core_order_stage,
                flake_pca_dim1,flake_pca_dim2,flake_pca_dim3,
@@ -691,11 +691,13 @@ aov(skill_pca_dim1_quantity_flaking~Condition*core_order_stage, data=learning_ra
 
 aov(skill_pca_dim2_quality_flaking~Condition*core_order_stage, data=learning_rate_data) %>% report() %>% as.report_table(summary=TRUE)
 
-learning_rate_data$Condition = factor(learning_rate_data$Condition, levels=c('Untrained','Trained'))
+learning_rate_data$Condition = factor(learning_rate_data$Condition, levels=c('observation only','active teaching'))
 
 #Fig 11a
 p11a<- ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim1_quantity_flaking, color=Condition))+
-  geom_point()+
+  geom_point(aes(shape=Condition))+
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   facet_wrap(Condition~subject, dir="v", labeller = label_wrap_gen(multi_line=FALSE))+
   ggtitle("a") +
   xlab("Relative core order %") +
@@ -707,7 +709,9 @@ p11a<- ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim1_quan
 
 #Fig 11b
 p11b<- ggplot(learning_rate_data,aes(x=adjusted_cores_used,y=skill_pca_dim2_quality_flaking, color=Condition))+
-  geom_point()+
+  geom_point(aes(shape=Condition))+
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   facet_wrap(Condition~subject, dir="v", labeller = label_wrap_gen(multi_line=FALSE))+
   ggtitle("b") +xlab("Relative core order %") +
   ylab("Skill PC 2 Quality flaking")+
@@ -722,7 +726,9 @@ aov(log(core_start_mass)~Condition*core_order_stage, data=learning_rate_data) %>
 
 ##Fig 10
 ggplot(learning_rate_data,aes(x=Order,y=log(core_start_mass), color=Condition))+
-  geom_point()+
+  geom_point(aes(shape=Condition))+
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_x_discrete(labels = c('observation only','active teaching'))+
   facet_wrap(~Condition)+
   xlab("Core order") +
   ylab("Nodule starting mass (log[g])")+
@@ -813,19 +819,25 @@ bptest(PC1_best_model) #test for heteroskedasticity
 ##### plot Skill factor 1 model (quantity flaking) ####
 
 pred.mm_cond_nback<- ggpredict(PC1_best_model, terms = c("Highest_nBack","Condition"))  # this gives overall predictions for the model
-levels(pred.mm_cond_nback$group) <- c("Untrained", "Trained")
+levels(pred.mm_cond_nback$group) <- c("observation only", "active teaching")
 ##Fig 14a
 p14a<- plot(pred.mm_cond_nback,facet=F, add.data = F,show.title =F, alpha=0.07) + 
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_fill_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  geom_line(aes(linetype = group))+
   labs(title ="a",x = "Highest n-back level", 
        y = "Quantity flaking (higher = more quantity flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))
 
 pred.mm_beast_condition<- ggpredict(PC1_best_model, terms = c("BEAST","Condition"))  # this gives overall predictions for the model
-levels(pred.mm_beast_condition$group) <- c("Untrained", "Trained")
+levels(pred.mm_beast_condition$group) <- c("observation only", "active teaching")
 ##Fig 14b
 
 p14b<- plot(pred.mm_beast_condition,facet=F, add.data = F,show.title =F, alpha=0.07) + 
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_fill_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  geom_line(aes(linetype = pred.mm_beast_condition$group))+
   labs(title ="b",
        x = "BEAST score", 
        y = "Quantity flaking (higher = more quantity flaking)")+
@@ -836,7 +848,8 @@ p14a|p14b
 ## ggsave("figure/Figure14.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
 ## Fig15
-pred.mm_cond_grip<- ggpredict(PC1_best_model, terms = c("Condition","Grip_Strength"))  # this gives overall predictions for the model
+pred.mm_cond_grip<- ggpredict(PC1_best_model, terms = c("Condition","Grip_Strength")) # this gives overall predictions for the model
+pred.mm_cond_grip<- pred.mm_cond_grip %>% mutate(x = recode(x, "0" = "observation only", '1'="active teaching"))   
 plot(pred.mm_cond_grip,facet=F, add.data = F,show.title =F, alpha=0.07) +
   labs(x = "Training condition",
        y = "Quantity flaking (higher = more quantity flaking)",
@@ -845,7 +858,7 @@ plot(pred.mm_cond_grip,facet=F, add.data = F,show.title =F, alpha=0.07) +
   theme(text = element_text(size=20))+
   scale_color_manual(labels = c("low (-1.0)","medium (-0.1)", "high (0.87)"),
                      values = c("blue", "red", "purple"))+
-  scale_x_discrete(limits=c("Untrained", "Trained"))
+  scale_x_discrete(limits=c("observation only", "active teaching"))
 ## ggsave("figure/Figure15.jpg",width = 25, height = 20, units = "cm", dpi=300)
 
 pred
@@ -908,13 +921,13 @@ p16b<- ggplot(model_data, aes(x=Highest_nBack, y=skill_pca_dim2_quality_flaking,
 # plots to show why interaction effects are challenging to interpret
 ##Fig 16a
 p16a<- ggplot(model_data,aes(x=RPM,y=skill_pca_dim2_quality_flaking, color=BEAST))+
-  geom_point(size=3)+
+  geom_point(size=4)+
 labs(title = "a",
      x = "RPM", 
      y = "Quality flaking (higher = increased quality flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))+ 
-  labs(color = "BEAST score")
+  scale_color_viridis_c()
 p16a|p16b
 ## ggsave("figure/Figure16.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
@@ -960,24 +973,24 @@ quantity_best_model %>%
 ##Fig 13b
 pred.mm_train_nback<- ggpredict(quantity_best_model, terms = c("Highest_nBack","Condition"))  # this gives overall predictions for the model
 p13b<-plot(pred.mm_train_nback,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_fill_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
   labs(title = "b",x = "Highest n-back level", 
        y = "Total mass removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
-  labs(color = "")+
   theme(legend.position = "none") 
 
 ##Fig 13a
 pred.mm_train_beast<- ggpredict(quantity_best_model, terms = c("BEAST","Condition"))  # this gives overall predictions for the model
 p13a<- plot(pred.mm_train_beast,facet=F, add.data =F,show.title =F, alpha=0.07) + 
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
+  scale_fill_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
   labs(title = "a",
        x = "BEAST score", 
        y = "Total mass removed from cores")+
   theme_classic()+
-  theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("red", "blue"))+ 
-  labs(color = "")
+  theme(text = element_text(size=20))
 p13a|p13b
 ## ggsave("figure/Figure13.jpg",width = 40, height = 20, units = "cm", dpi=300)
 
@@ -986,15 +999,16 @@ p13a|p13b
 
 #How does quality relate to quantity? (repeate of section above, move code when finalized)
 ##Fig 5c
+model_data <- model_data %>% mutate(Condition = recode(Condition, "0" = "observation only", '1'="active teaching"))
 p5c<- ggplot(model_data, aes(y=skill_pca_dim2_quality_flaking, x=skill_pca_dim1_quantity_flaking, color=Condition))+
-  geom_point(size=4)+
+  geom_point(size=4,aes(shape=Condition))+
   geom_smooth(method="lm", alpha=0.2)+
   ggtitle("c") +
   xlab("Quantity flaking (higher = more quantity flaking)") +
   ylab("Quality flaking (higher = more quality flaking)")+
   theme_classic()+
   theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))
 
 summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking*Condition, data=model_data))
 summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking, data=subset(model_data, Condition=="0")))
@@ -1003,14 +1017,14 @@ summary(lm(skill_pca_dim2_quality_flaking~skill_pca_dim1_quantity_flaking, data=
 #How does quantity relate to productivity?
 ##Fig 5a
 p5a<- ggplot(model_data, aes(x=skill_pca_dim1_quantity_flaking, y=removed_mass_sum, color=Condition))+
-  geom_point(size=4)+
+  geom_point(size=4,aes(shape=Condition))+
   geom_smooth(method="lm", alpha=0.2)+
   ggtitle("a") +
   xlab("Quantity flaking (higher = more quantity flaking)") +
   ylab("Total mass (g) removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
   theme(legend.position = "none")
 
 summary(lm(skill_pca_dim1_quantity_flaking~removed_mass_sum, data=model_data))
@@ -1020,14 +1034,14 @@ summary(lm(skill_pca_dim1_quantity_flaking~removed_mass_sum, data=subset(model_d
 #How does quality relate to productivity?
 ##Fig 5b
 p5b<- ggplot(model_data, aes(x=skill_pca_dim2_quality_flaking, y=removed_mass_sum, color=Condition))+
-  geom_point(size=4)+
+  geom_point(size=4,aes(shape=Condition))+
   geom_smooth(method="lm", alpha=0.2)+
   ggtitle("b") +
   xlab("Quality flaking (higher = more quality flaking)") +
   ylab("Total mass (g) removed from cores")+
   theme_classic()+
   theme(text = element_text(size=20))+
-  scale_color_manual(labels = c("Untrained", "Trained"), values = c("blue", "red"))+
+  scale_color_manual(labels = c("observation only", "active teaching"), values = c("blue", "red"))+
   theme(legend.position = "none")
 p5a|p5b|p5c
 ## ggsave("figure/Figure5.jpg",width = 60, height = 20, units = "cm", dpi=300)
