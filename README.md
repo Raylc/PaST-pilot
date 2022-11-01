@@ -1,6 +1,6 @@
 # PaST-pilot
 
-Pargeter et al., JAMT, Testing the social, cognitive, and motor foundations of Paleolithic skill reproduction (code, data, figure, and manuscript)
+Pargeter， J., Liu, C., Beney Kilgore, M., Majoe, A., & Stout, D. (2022). Testing the effect of learning conditions and individual motor/cognitive differences on knapping skill acquisition. Journal of Archaeological Method and Theory.
 
 ## Getting Started
 
